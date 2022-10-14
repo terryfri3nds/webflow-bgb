@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "build": "node builder.js",
+    "serve" : "live-server"
+  },
+  "dependencies": {
+    "esbuild": "^0.15.10",
+    "live-server": "^1.1.0"
+  }
+}
