@@ -1,6 +1,17 @@
 $(document).ready(function () {
   /* SECTION SCROLLBAR */
 
+  function changePopUp(trigger) {
+    $(".item-popup").removeClass("active");
+
+    let myIndex = trigger.index();
+    $(".item-popup").eq(myIndex).addClass("active");
+    $(".popup-wrapper").css("display", "block");
+
+    $(".item-popup").eq(myIndex).find("video").trigger("play");
+    // $(".grid-image").eq(myIndex).addClass("current");
+  }
+
   // Page Load
   $(".grid-card").eq(0).addClass("current");
   //$('.grid2-item').eq(0).addClass('current');
@@ -26,7 +37,6 @@ $(document).ready(function () {
       // do something else
     }
   });
-  console.clear();
 
   // = custom scrollbar ============
   const scrollBar = document.querySelector(".barcontainer");
@@ -67,4 +77,38 @@ $(document).ready(function () {
     gsap.set(handler, { y: (barLength * trigger.scroll()) / maxScroll });
   }
   /* END SCROLLBAR */
+
+  /* POPUP VIDEO */
+
+  // Adds overflow hidden to the body prevent page scrolling when popup is open
+  $(".popup-toggle").on("click", function () {
+    $("body").addClass("overflow-hidden");
+
+    changePopUp($(this));
+  });
+
+  // Removes overflow hidden from body if popup is closed
+  $(".popup-close, .popup-background").on("click", function () {
+    $("body").removeClass("overflow-hidden");
+  });
+
+  $(".grid1-item").on("click", function () {
+    $(".popup-toggle").eq($(this).index()).trigger("click");
+  });
+
+  // Stops YouTube / Vimeo Video from playing if Popup is closed
+  /*$(function () {
+    $(
+      ".popup-video-group .popup-close, .popup-video-group .popup-background"
+    ).click(function () {
+      setTimeout(function () {
+        $(".popup-video-group iframe").attr(
+          "src",
+          $(".popup-video-group iframe").attr("src")
+        );
+      }, 400);
+    });
+  });*/
+
+  /* END POPUP VIDEO */
 });

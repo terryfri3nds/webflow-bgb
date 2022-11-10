@@ -37,7 +37,7 @@ function drawImageProp(ctx, img, x, y, w, h, offsetX, offsetY) {
 }
 
 // Apply interaction to all elements with this class
-$(".cc-zigzag").each(function (index) {
+$(".cc-sticky").each(function (index) {
   const canvas = $(this).find("canvas")[0];
   const embed = $(this).find(".embed")[0];
   const context = canvas.getContext("2d");
@@ -106,56 +106,66 @@ $(".cc-zigzag").each(function (index) {
       render();
     }
   });
-});
 
-// Split Lines
-/*
-$(document).ready(function () {
-  clippingText = {
-    mask: function (element) {
-      console.log(element);
-      element.splitLines({ tag: "<span class='words'>" });
+  /* API GreenHouse */
 
-      const lines = gsap.utils.toArray(element.children(".words"));
-      let width = window.innerWidth;
-      let speed = 350; //pixels per second
-      let endX = width;
-      let duration = endX / speed;
+  async function getJobBoards() {
+    const response = await fetch(
+      "https://boards-api.greenhouse.io/v1/boards/bgb368test/jobs?content=true"
+    );
 
-      console.log(endX);
-      console.log(duration);
-      let timeline = gsap.timeline({
-        scrollTrigger: {
-          trigger: element,
-          start: "top 60%",
-          end: "bottom 60%",
-          markers: false,
-          scrub: 0.3,
-        },
-      });
+    if (!response.ok) {
+      const message = `An error has occured: ${response.status}`;
 
-      console.log(lines);
-      //bus.to(lines, {duration:duration, color:'green', xPercent: 0, ease:'none'})
+      throw new Error(message);
+    }
 
-      lines.forEach((line) => {
-        timeline.to(line, {
-          duration: duration,
-          color: "white",
-          xPercent: 0,
-          ease: "ease",
-        });
-      });
-    },
-  };
+    const dataJSON = await response.json();
 
-  $(".js-clipping-text").each(function (index) {
-    clippingText.mask($(this));
-  });
-
-  
-  const amountText = $("[class*='js-clipping-text']").length;
-  for(i = 1; i <= amountText; i++)
-  {
-      clippingText.mask($("[class*='js-clipping-text']"));
+    return dataJSON;
   }
-*/
+
+  getJobBoards()
+    .then((data) => {
+      console.log("jsonData", data);
+
+      var arrJobs = [];
+      var arrJobOppty = [];
+      Object.keys(data.jobs).forEach(function (key) {
+        let item = data.jobs[key];
+        console.log("item", item);
+        console.log("item.departaments[0].name", item.departaments[0].name);
+        let jobName = item.departaments[0].name;
+        let jobId = item.departaments[0].id;
+        let jobOppty = {};
+        jobOppty.id = item.id;
+        jobOppty.name = item.title;
+        jobOppty.job = jobName;
+        jobOppty.internal_job_id = item.internal_job_id;
+        jobOppty.jobId = jobId;
+
+        arrJobs.push(jobName);
+        arrJobOppty.push(jobName);
+      });
+
+      let html = `<div class="jobboars">
+      <div class="head-container">
+        <p class="p-large text-black count"></p></div>
+        <div class="spacer-y-6"></div>
+        <div class="opportunities-container">
+          <div class="opportunities-item">
+            <div class="item">
+            <div class="separator"></div>
+            <div class="spacer-y-4"></div>
+            <div class="spacer-y-4"></div>
+            <h1 class="heading-md-2 text-black">Heading</h1>
+          </div>
+        </div>
+      </div>
+      <div class="spacer-y-6"></div>
+    </div>`;
+    })
+    .catch((error) => {
+      console.error(error.message);
+    });
+});

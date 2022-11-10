@@ -1,0 +1,690 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head prefix="og: http://ogp.me/ns#">
+<script type="text/javascript">var _rollbarConfig = {"accessToken":"333f38f9343644929613c6ff7e965f21","captureUncaught":true,"payload":{"environment":"production"},"hostBlockList":["linkedin.com"],"checkIgnore":function(isUncaught, args, payload) {
+  try {
+    var isPhantomJS = window.navigator.userAgent.match(/phantomjs/i);
+    var isSplash= window.navigator.userAgent.match(/splash version/i);
+    var firefox = window.navigator.userAgent.match(/(firefox)\/(\w+)/i); // JSON, must escape slash
+
+    var isFirefoxLessThan50;
+    if (firefox) {
+      var majorVersion = Number(firefox[2]);
+      isFirefoxLessThan50 = majorVersion < 50
+    }
+
+    return Boolean(isPhantomJS) || Boolean(isSplash) || Boolean(isFirefoxLessThan50);
+  } catch (e) {
+    return true;
+  }
+}
+};</script>
+<script type="text/javascript">!function(r){var e={};function o(n){if(e[n])return e[n].exports;var t=e[n]={i:n,l:!1,exports:{}};return r[n].call(t.exports,t,t.exports,o),t.l=!0,t.exports}o.m=r,o.c=e,o.d=function(r,e,n){o.o(r,e)||Object.defineProperty(r,e,{enumerable:!0,get:n})},o.r=function(r){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(r,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(r,"__esModule",{value:!0})},o.t=function(r,e){if(1&e&&(r=o(r)),8&e)return r;if(4&e&&"object"==typeof r&&r&&r.__esModule)return r;var n=Object.create(null);if(o.r(n),Object.defineProperty(n,"default",{enumerable:!0,value:r}),2&e&&"string"!=typeof r)for(var t in r)o.d(n,t,function(e){return r[e]}.bind(null,t));return n},o.n=function(r){var e=r&&r.__esModule?function(){return r.default}:function(){return r};return o.d(e,"a",e),e},o.o=function(r,e){return Object.prototype.hasOwnProperty.call(r,e)},o.p="",o(o.s=0)}([function(r,e,o){"use strict";var n=o(1),t=o(5);_rollbarConfig=_rollbarConfig||{},_rollbarConfig.rollbarJsUrl=_rollbarConfig.rollbarJsUrl||"https://cdn.rollbar.com/rollbarjs/refs/tags/v2.22.0/rollbar.min.js",_rollbarConfig.async=void 0===_rollbarConfig.async||_rollbarConfig.async;var a=n.setupShim(window,_rollbarConfig),l=t(_rollbarConfig);window.rollbar=n.Rollbar,a.loadFull(window,document,!_rollbarConfig.async,_rollbarConfig,l)},function(r,e,o){"use strict";var n=o(2),t=o(3);function a(r){return function(){try{return r.apply(this,arguments)}catch(r){try{console.error("[Rollbar]: Internal error",r)}catch(r){}}}}var l=0;function i(r,e){this.options=r,this._rollbarOldOnError=null;var o=l++;this.shimId=function(){return o},"undefined"!=typeof window&&window._rollbarShims&&(window._rollbarShims[o]={handler:e,messages:[]})}var s=o(4),d=function(r,e){return new i(r,e)},c=function(r){return new s(d,r)};function u(r){return a((function(){var e=this,o=Array.prototype.slice.call(arguments,0),n={shim:e,method:r,args:o,ts:new Date};window._rollbarShims[this.shimId()].messages.push(n)}))}i.prototype.loadFull=function(r,e,o,n,t){var l=!1,i=e.createElement("script"),s=e.getElementsByTagName("script")[0],d=s.parentNode;i.crossOrigin="",i.src=n.rollbarJsUrl,o||(i.async=!0),i.onload=i.onreadystatechange=a((function(){if(!(l||this.readyState&&"loaded"!==this.readyState&&"complete"!==this.readyState)){i.onload=i.onreadystatechange=null;try{d.removeChild(i)}catch(r){}l=!0,function(){var e;if(void 0===r._rollbarDidLoad){e=new Error("rollbar.js did not load");for(var o,n,a,l,i=0;o=r._rollbarShims[i++];)for(o=o.messages||[];n=o.shift();)for(a=n.args||[],i=0;i<a.length;++i)if("function"==typeof(l=a[i])){l(e);break}}"function"==typeof t&&t(e)}()}})),d.insertBefore(i,s)},i.prototype.wrap=function(r,e,o){try{var n;if(n="function"==typeof e?e:function(){return e||{}},"function"!=typeof r)return r;if(r._isWrap)return r;if(!r._rollbar_wrapped&&(r._rollbar_wrapped=function(){o&&"function"==typeof o&&o.apply(this,arguments);try{return r.apply(this,arguments)}catch(o){var e=o;throw e&&("string"==typeof e&&(e=new String(e)),e._rollbarContext=n()||{},e._rollbarContext._wrappedSource=r.toString(),window._rollbarWrappedError=e),e}},r._rollbar_wrapped._isWrap=!0,r.hasOwnProperty))for(var t in r)r.hasOwnProperty(t)&&(r._rollbar_wrapped[t]=r[t]);return r._rollbar_wrapped}catch(e){return r}};for(var p="log,debug,info,warn,warning,error,critical,global,configure,handleUncaughtException,handleAnonymousErrors,handleUnhandledRejection,captureEvent,captureDomContentLoaded,captureLoad".split(","),f=0;f<p.length;++f)i.prototype[p[f]]=u(p[f]);r.exports={setupShim:function(r,e){if(r){var o=e.globalAlias||"Rollbar";if("object"==typeof r[o])return r[o];r._rollbarShims={},r._rollbarWrappedError=null;var l=new c(e);return a((function(){e.captureUncaught&&(l._rollbarOldOnError=r.onerror,n.captureUncaughtExceptions(r,l,!0),e.wrapGlobalEventHandlers&&t(r,l,!0)),e.captureUnhandledRejections&&n.captureUnhandledRejections(r,l,!0);var a=e.autoInstrument;return!1!==e.enabled&&(void 0===a||!0===a||"object"==typeof a&&a.network)&&r.addEventListener&&(r.addEventListener("load",l.captureLoad.bind(l)),r.addEventListener("DOMContentLoaded",l.captureDomContentLoaded.bind(l))),r[o]=l,l}))()}},Rollbar:c}},function(r,e,o){"use strict";function n(r,e,o,n){r._rollbarWrappedError&&(n[4]||(n[4]=r._rollbarWrappedError),n[5]||(n[5]=r._rollbarWrappedError._rollbarContext),r._rollbarWrappedError=null);var t=e.handleUncaughtException.apply(e,n);o&&o.apply(r,n),"anonymous"===t&&(e.anonymousErrorsPending+=1)}r.exports={captureUncaughtExceptions:function(r,e,o){if(r){var t;if("function"==typeof e._rollbarOldOnError)t=e._rollbarOldOnError;else if(r.onerror){for(t=r.onerror;t._rollbarOldOnError;)t=t._rollbarOldOnError;e._rollbarOldOnError=t}e.handleAnonymousErrors();var a=function(){var o=Array.prototype.slice.call(arguments,0);n(r,e,t,o)};o&&(a._rollbarOldOnError=t),r.onerror=a}},captureUnhandledRejections:function(r,e,o){if(r){"function"==typeof r._rollbarURH&&r._rollbarURH.belongsToShim&&r.removeEventListener("unhandledrejection",r._rollbarURH);var n=function(r){var o,n,t;try{o=r.reason}catch(r){o=void 0}try{n=r.promise}catch(r){n="[unhandledrejection] error getting `promise` from event"}try{t=r.detail,!o&&t&&(o=t.reason,n=t.promise)}catch(r){}o||(o="[unhandledrejection] error getting `reason` from event"),e&&e.handleUnhandledRejection&&e.handleUnhandledRejection(o,n)};n.belongsToShim=o,r._rollbarURH=n,r.addEventListener("unhandledrejection",n)}}}},function(r,e,o){"use strict";function n(r,e,o){if(e.hasOwnProperty&&e.hasOwnProperty("addEventListener")){for(var n=e.addEventListener;n._rollbarOldAdd&&n.belongsToShim;)n=n._rollbarOldAdd;var t=function(e,o,t){n.call(this,e,r.wrap(o),t)};t._rollbarOldAdd=n,t.belongsToShim=o,e.addEventListener=t;for(var a=e.removeEventListener;a._rollbarOldRemove&&a.belongsToShim;)a=a._rollbarOldRemove;var l=function(r,e,o){a.call(this,r,e&&e._rollbar_wrapped||e,o)};l._rollbarOldRemove=a,l.belongsToShim=o,e.removeEventListener=l}}r.exports=function(r,e,o){if(r){var t,a,l="EventTarget,Window,Node,ApplicationCache,AudioTrackList,ChannelMergerNode,CryptoOperation,EventSource,FileReader,HTMLUnknownElement,IDBDatabase,IDBRequest,IDBTransaction,KeyOperation,MediaController,MessagePort,ModalWindow,Notification,SVGElementInstance,Screen,TextTrack,TextTrackCue,TextTrackList,WebSocket,WebSocketWorker,Worker,XMLHttpRequest,XMLHttpRequestEventTarget,XMLHttpRequestUpload".split(",");for(t=0;t<l.length;++t)r[a=l[t]]&&r[a].prototype&&n(e,r[a].prototype,o)}}},function(r,e,o){"use strict";function n(r,e){this.impl=r(e,this),this.options=e,function(r){for(var e=function(r){return function(){var e=Array.prototype.slice.call(arguments,0);if(this.impl[r])return this.impl[r].apply(this.impl,e)}},o="log,debug,info,warn,warning,error,critical,global,configure,handleUncaughtException,handleAnonymousErrors,handleUnhandledRejection,_createItem,wrap,loadFull,shimId,captureEvent,captureDomContentLoaded,captureLoad".split(","),n=0;n<o.length;n++)r[o[n]]=e(o[n])}(n.prototype)}n.prototype._swapAndProcessMessages=function(r,e){var o,n,t;for(this.impl=r(this.options);o=e.shift();)n=o.method,t=o.args,this[n]&&"function"==typeof this[n]&&("captureDomContentLoaded"===n||"captureLoad"===n?this[n].apply(this,[t[0],o.ts]):this[n].apply(this,t));return this},r.exports=n},function(r,e,o){"use strict";r.exports=function(r){return function(e){if(!e&&!window._rollbarInitialized){for(var o,n,t=(r=r||{}).globalAlias||"Rollbar",a=window.rollbar,l=function(r){return new a(r)},i=0;o=window._rollbarShims[i++];)n||(n=o.handler),o.handler._swapAndProcessMessages(l,o.messages);window[t]=n,window._rollbarInitialized=!0}}}}]);</script>
+  <title>Job Application for Spring Semester 2023 Account Internship at BGB Group</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta id="viewport" name="viewport" content ="width=device-width, minimum-scale=1.0" />
+  <meta id="rendered-by" content="jben" />
+  <link rel="stylesheet" media="all" href="https://boards.cdn.greenhouse.io/assets/application-a6d2e561e41c10f2af9cb9ada87f95f1a901986175a7f5d963b89e51d7eeda2c.css" />
+<link rel="stylesheet" media="all" href="https://boards.cdn.greenhouse.io/assets/responsive-95ad71d0f9cbcb13adb28ed74687b15c00a64bb1c4a6ab47ab9072493777804c.css" />
+  <script class="js-metadata" data-key="Polyglot.translation" data-type="json" data-value="{&quot;captcha&quot;:{&quot;suspected_bot&quot;:&quot;SUSPECTED BOT: Captcha failed with direct HTTP form post IP %{ip}\n&quot;,&quot;failed_to_load&quot;:&quot;Google Recaptcha service cannot be loaded.&quot;,&quot;failed&quot;:&quot;Oops! There was an error processing your application. Please try again.&quot;,&quot;geetest_failed_to_load&quot;:&quot;Geetest Captcha service failed to load.&quot;},&quot;job_post&quot;:{&quot;almost_there&quot;:&quot;Almost there! Review your information then click &#39;Submit Application&#39; to apply.&quot;,&quot;apply_for_this_job&quot;:&quot;Apply for this Job&quot;,&quot;apply_now&quot;:&quot;Apply Now&quot;,&quot;attach&quot;:&quot;Attach&quot;,&quot;attachment&quot;:&quot;An attachment&quot;,&quot;at_org&quot;:&quot;at %{organization_name}&quot;,&quot;back_to_application&quot;:&quot;Back to application&quot;,&quot;cancel&quot;:&quot;Cancel&quot;,&quot;city&quot;:&quot;City&quot;,&quot;company_name&quot;:&quot;Company Name&quot;,&quot;cover_letter&quot;:&quot;Cover Letter&quot;,&quot;current&quot;:&quot;Current&quot;,&quot;degree&quot;:&quot;Degree&quot;,&quot;discipline&quot;:&quot;Discipline&quot;,&quot;drop_files_here&quot;:&quot;Drop files here&quot;,&quot;education&quot;:&quot;Education&quot;,&quot;education_end_date&quot;:&quot;End Date&quot;,&quot;education_start_date&quot;:&quot;Start Date&quot;,&quot;email&quot;:&quot;Email&quot;,&quot;employment&quot;:&quot;Employment&quot;,&quot;field_chosen&quot;:&quot;%{field} chosen&quot;,&quot;file_types&quot;:&quot;File types&quot;,&quot;first_name&quot;:&quot;First Name&quot;,&quot;loading_attachment&quot;:&quot;Loading attachment from %{uploader}...&quot;,&quot;locate_me&quot;:&quot;Locate me&quot;,&quot;location&quot;:&quot;Location&quot;,&quot;last_name&quot;:&quot;Last Name&quot;,&quot;name&quot;:&quot;Name&quot;,&quot;no&quot;:&quot;No&quot;,&quot;optional&quot;:&quot;Optional&quot;,&quot;or&quot;:&quot;or&quot;,&quot;paste&quot;:&quot;or enter manually&quot;,&quot;phone&quot;:&quot;Phone&quot;,&quot;please_select&quot;:&quot;Please select&quot;,&quot;question&quot;:&quot;Question&quot;,&quot;required&quot;:&quot;Required&quot;,&quot;remove_attachment&quot;:&quot;Remove attachment&quot;,&quot;resume&quot;:&quot;Resume/CV&quot;,&quot;school_name&quot;:&quot;School&quot;,&quot;share_this_job&quot;:&quot;Share this job: &quot;,&quot;select&quot;:&quot;Select&quot;,&quot;select_one&quot;:&quot;Select one&quot;,&quot;select_field&quot;:&quot;Select a %{field}&quot;,&quot;submit_application&quot;:&quot;Submit Application&quot;,&quot;file_uploader_timeout&quot;:&quot;Unable to load %{uploader}. It has either timed out or you can try again later.&quot;,&quot;textarea&quot;:&quot;Enter manually&quot;,&quot;title&quot;:&quot;Title&quot;,&quot;view_more_jobs&quot;:&quot;View more jobs at %{organization_name}&quot;,&quot;view_all_jobs&quot;:&quot;View all jobs&quot;,&quot;without_browser_support&quot;:&quot;The browser does not support %{uploader} upload.&quot;,&quot;year&quot;:&quot;Year&quot;,&quot;yes&quot;:&quot;Yes&quot;},&quot;validation&quot;:{&quot;at_least_one_required&quot;:&quot;At least one option must be checked&quot;,&quot;consent_is_required&quot;:&quot;Please accept the terms to proceed&quot;,&quot;did_you_mean&quot;:&quot;Did you mean&quot;,&quot;empty_attachment&quot;:&quot;Attached files must be larger than 0 bytes&quot;,&quot;field_is_required&quot;:&quot;%{field} is required.&quot;,&quot;invalid_date&quot;:&quot;End Date cannot be before Start Date&quot;,&quot;invalid_email&quot;:&quot;Please use the format \&quot;text@example.com\&quot;&quot;,&quot;invalid_field&quot;:&quot;Invalid %{field}&quot;,&quot;invalid_location&quot;:&quot;Please enter your location and select it from the dropdown&quot;,&quot;month_format&quot;:&quot;Month must be a number between 1 and 12&quot;,&quot;this_field_is_required&quot;:&quot;This field is required.&quot;,&quot;year_format&quot;:&quot;Year must be a number between 1900 and 2100&quot;},&quot;errors&quot;:{&quot;board_misconfigured&quot;:&quot;This job board is not yet configured. Please complete configuration in Greenhouse before embedding.&quot;,&quot;board_no_longer_available&quot;:&quot;The board you are looking for is no longer open.&quot;,&quot;job_not_live&quot;:{&quot;job_closed&quot;:&quot;The job you are looking for is no longer open.&quot;,&quot;board_closed&quot;:&quot;The board on which this job was on is no longer open.&quot;},&quot;job_not_found&quot;:&quot;The job you are looking for was not found.&quot;,&quot;job_processing_timed_out&quot;:&quot;Uh oh!  Your application took too long to process.  If you&#39;re attaching lots of files, try making them smaller.&quot;,&quot;job_stale&quot;:&quot;The company you are applying to has updated this job application. Please save your responses, reload the page, and try to submit again.&quot;},&quot;api_errors&quot;:{&quot;empty_file&quot;:&quot;Attachment &#39;%{field}&#39; is empty. Please provide a non-empty file.&quot;,&quot;invalid_file&quot;:&quot;Attachment &#39;%{field}&#39; is invalid. Please provide a valid file attachment.&quot;},&quot;job_application_request&quot;:{&quot;request_received&quot;:&quot;Thanks for your submission.&quot;},&quot;data_compliance&quot;:{&quot;gdpr&quot;:{&quot;disclaimer&quot;:&quot;%{company_name} has my consent to collect, store, and process my data for the purpose of considering me for employment, and for up to %{retention_period} days thereafter.&quot;}}}" type="text/configuration"></script><script class="js-metadata" data-key="errorImageSource" data-type="string" data-value="https://boards.cdn.greenhouse.io/assets/svg/error-69893c3b3f8f27477ac24dbcb3d8e569fcc265882e77cd464d2bad69dd7d3918.svg" type="text/configuration"></script>
+    <meta property="og:title" content="Spring Semester 2023 Account Internship"></meta>
+    <meta property="og:description" content="Remote"></meta>
+    <meta property="og:url" content="https://boards.greenhouse.io/bgbgroup/jobs/4567544"></meta>
+    <meta property="og:image" content="https://recruiting.cdn.greenhouse.io/external_greenhouse_job_boards/logos/000/001/470/original/BGB_GROUP_Logo_293_CG10_RGB.jpg?1441116201"></meta>
+    <meta property="og:type" content="article"></meta>
+    <meta property="gh:type" content="embedded"></meta>
+    <link rel="stylesheet" media="screen" href="https://recruiting.cdn.greenhouse.io/external_greenhouse_job_boards/custom_css_files/000/001/470/original/gh-careerFair.css?1442585248" />
+      
+</head>
+<body>
+  <style>
+    /*Base Structure*/
+    #app_body, #wrapper {max-width: none; padding: 0px 0px;} 
+    
+    #app_body[style] {
+    padding-left: 0px !important;
+    } 
+
+    /* Into Sections*/
+    #application {
+      padding: 0px;
+      /*background-color: #FAFAFA;*/
+      max-width: none;
+    }
+    #main_fields, #custom_fields {    
+      background: black;
+      color: white;
+    }
+    
+    #content, #main_fields, #custom_fields, #eeoc_fields {
+      padding: 10rem 10rem;
+      max-width: 100vw;
+    }
+    
+    #main hr {display: none;}
+    
+   #submit_buttons {
+    text-align: center;
+    }
+    #main_fields div.field label, #eeoc_fields div.field label {
+      text-align: left;
+    }
+    
+    
+  </style>
+  <div id="wrapper">
+    <div id="main" class="">
+      
+
+
+
+
+<div id='app_body' style='padding-left:20px'>
+  <div class="logo-container">
+  </div>
+
+    <div id="header">
+
+  <h1 class='app-title'>Spring Semester 2023 Account Internship</h1>
+
+  <span class='company-name'>
+    at BGB Group
+  </span>
+
+    <a data-mapped="true" target="_top" href="http://www.bgbgroup.com/careers.html">(View all jobs)</a>
+
+    <div class='location'>
+      Remote
+    </div>
+</div>
+  <div id="content" class="">
+    
+
+    <p><strong><span data-contrast="none">Our Agency</span></strong><span data-contrast="none"> </span><span data-ccp-props="{&quot;134233117&quot;:true,&quot;134233118&quot;:true,&quot;201341983&quot;:0,&quot;335559739&quot;:160,&quot;335559740&quot;:240}">&nbsp;</span></p>
+<p><em><span data-contrast="none">BGB is a healthcare communications agency that offers a wide range of services, including traditional pharmaceutical advertising, promotional medical education, payer marketing, and consulting services. Known for excellence and professionalism, we’re hired as strategic and creative partners by our biopharmaceutical clients to drive category/brand awareness and growth. </span></em><span data-contrast="none"> </span><span data-ccp-props="{&quot;134233117&quot;:true,&quot;134233118&quot;:true,&quot;201341983&quot;:0,&quot;335559739&quot;:160,&quot;335559740&quot;:240}">&nbsp;</span></p>
+<p><em>We have a flexible workforce, offering hybrid and remote job opportunities. Our home base is in SoHo, New York City, where we have our large, light-filled duplex loft that features panoramic views of lower Manhattan.<span data-ccp-props="{&quot;134233117&quot;:true,&quot;134233118&quot;:true,&quot;201341983&quot;:0,&quot;335559740&quot;:240}">&nbsp;</span></em></p>
+<p><span data-contrast="none">We’re on the lookout for Account Management Interns <strong>for school credit this upcoming Spring semester </strong>who:</span><span data-ccp-props="{&quot;134233117&quot;:true,&quot;134233118&quot;:true,&quot;201341983&quot;:0,&quot;335559739&quot;:160,&quot;335559740&quot;:240}">&nbsp;</span></p>
+<ul>
+<li><span data-contrast="none">Will be graduating within a year with a Bachelor’s or Master’s degree in science, communications, marketing/advertising, or healthcare</span><span data-ccp-props="{&quot;134233117&quot;:true,&quot;134233118&quot;:true,&quot;201341983&quot;:0,&quot;335559739&quot;:160,&quot;335559740&quot;:240}">&nbsp;</span></li>
+<li><span data-contrast="none">Have a strong career interest in healthcare communications</span><span data-ccp-props="{&quot;134233117&quot;:true,&quot;134233118&quot;:true,&quot;201341983&quot;:0,&quot;335559739&quot;:160,&quot;335559740&quot;:240}">&nbsp;</span></li>
+<li><span data-contrast="none">Are self-starters that take initiative and think quickly on their feet</span><span data-ccp-props="{&quot;134233117&quot;:true,&quot;134233118&quot;:true,&quot;201341983&quot;:0,&quot;335559739&quot;:160,&quot;335559740&quot;:240}">&nbsp;</span></li>
+<li><span data-contrast="none">Possess strong verbal, presentation, and written communication skills</span><span data-ccp-props="{&quot;134233117&quot;:true,&quot;134233118&quot;:true,&quot;201341983&quot;:0,&quot;335559739&quot;:160,&quot;335559740&quot;:240}">&nbsp;</span></li>
+<li><span data-contrast="none">Enjoy interacting with people and have a track record of working successfully in a team-based environment</span><span data-ccp-props="{&quot;134233117&quot;:true,&quot;134233118&quot;:true,&quot;201341983&quot;:0,&quot;335559739&quot;:160,&quot;335559740&quot;:240}">&nbsp;</span></li>
+<li><span data-contrast="none">Want an exciting internship opportunity for school credit, with potential for future full-time employment</span><span data-ccp-props="{&quot;134233117&quot;:true,&quot;134233118&quot;:true,&quot;201341983&quot;:0,&quot;335559739&quot;:160,&quot;335559740&quot;:240}">&nbsp;</span></li>
+</ul>
+<p><strong><span data-contrast="none">Specific Responsibilities </span></strong><span data-ccp-props="{&quot;134233117&quot;:true,&quot;134233118&quot;:true,&quot;201341983&quot;:0,&quot;335559739&quot;:160,&quot;335559740&quot;:240}">&nbsp;</span></p>
+<p><span data-contrast="none">The Account Management Intern will shadow our account team and provide support in areas where they most need it. These areas vary and may include:</span><span data-ccp-props="{&quot;134233117&quot;:true,&quot;134233118&quot;:true,&quot;201341983&quot;:0,&quot;335559739&quot;:160,&quot;335559740&quot;:240}">&nbsp;</span></p>
+<ul>
+<li><span data-contrast="none">Researching background information on new products and/or therapy areas</span><span data-ccp-props="{&quot;134233117&quot;:true,&quot;134233118&quot;:true,&quot;201341983&quot;:0,&quot;335559739&quot;:160,&quot;335559740&quot;:240}">&nbsp;</span></li>
+<li><span data-contrast="none">Brainstorming new ideas for projects or new business initiatives</span><span data-ccp-props="{&quot;134233117&quot;:true,&quot;134233118&quot;:true,&quot;201341983&quot;:0,&quot;335559739&quot;:160,&quot;335559740&quot;:240}">&nbsp;</span></li>
+<li><span data-contrast="none">Preparing materials for internal and client meetings</span><span data-ccp-props="{&quot;134233117&quot;:true,&quot;134233118&quot;:true,&quot;201341983&quot;:0,&quot;335559739&quot;:160,&quot;335559740&quot;:240}">&nbsp;</span></li>
+<li><span data-contrast="none">Assistance on active projects in development</span><span data-ccp-props="{&quot;134233117&quot;:true,&quot;134233118&quot;:true,&quot;201341983&quot;:0,&quot;335559739&quot;:160,&quot;335559740&quot;:240}">&nbsp;</span></li>
+<li><span data-contrast="none">Producing meeting summaries and following up on next steps with team members</span><span data-ccp-props="{&quot;134233117&quot;:true,&quot;134233118&quot;:true,&quot;201341983&quot;:0,&quot;335559739&quot;:160,&quot;335559740&quot;:240}">&nbsp;</span></li>
+<li><span data-contrast="none">Developing company marketing and communications</span><span data-ccp-props="{&quot;134233117&quot;:true,&quot;134233118&quot;:true,&quot;201341983&quot;:0,&quot;335559739&quot;:160,&quot;335559740&quot;:240}">&nbsp;</span></li>
+<li><span data-contrast="none">Planning internal agency programs and events</span><span data-ccp-props="{&quot;134233117&quot;:true,&quot;134233118&quot;:true,&quot;201341983&quot;:0,&quot;335559739&quot;:160,&quot;335559740&quot;:240}">&nbsp;</span></li>
+</ul>
+<p><strong><span data-contrast="none">Ready for an exciting, challenging semester? Apply now!</span></strong><span data-ccp-props="{&quot;134233117&quot;:true,&quot;134233118&quot;:true,&quot;201341983&quot;:0,&quot;335559739&quot;:160,&quot;335559740&quot;:240}">&nbsp;</span></p>
+
+    
+</div>
+
+    <div id='application' class="">
+      <a name='app'></a>
+      <form id="application_form" enctype="multipart/form-data" action="https://boards.greenhouse.io/embed/bgbgroup/jobs/4567544" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" />
+        <input type="hidden" name="fingerprint" id="fingerprint" value="d0ee99fb0eecd498e1661af1ce70c1681129ab90" />
+        <input type="hidden" name="render_date" id="render_date" value="2022-11-02 11:20:39 +0000" />
+
+
+          <input type="hidden" name="from_embed" id="from_embed" value="true" />
+
+        <div id='main_fields'>
+            <h2 class='heading'>Apply for this Job</h2>
+
+            <div class='required-fields'>
+              <span class='asterisk'>*</span> Required
+            </div>
+
+          <div class='clear'></div>
+
+
+          
+<script>
+  var EMAIL_ADDRESS_VALIDATOR_URL = 'https://email-address-validator.us.greenhouse.io/address/validate';
+</script>
+
+<div class='field'>
+  <label for='first_name'>First Name <span class='asterisk'>*</span></label>
+  <input type='text' id='first_name' name='job_application[first_name]' aria-required="true" maxlength="255" autocomplete="given-name"/>
+</div>
+<div class='field'>
+  <label for='last_name'>Last Name <span class='asterisk'>*</span></label>
+  <input type='text' id='last_name' name='job_application[last_name]' aria-required="true" maxlength="255" autocomplete="family-name" />
+</div>
+<div class='field'>
+  <label for='email'>Email <span class='asterisk'>*</span></label>
+  <input type='text' id='email' name='job_application[email]' aria-required="true" maxlength="255" autocomplete="email" />
+</div>
+<div class='field'>
+  <label for='phone'>Phone <span class='asterisk'>*</span></label>
+  <input type='text' id='phone' name='job_application[phone]' maxlength="255" autocomplete="tel" required='required' aria-required="true"/>
+</div>
+
+
+
+          
+<div class='field'>
+  <fieldset id='resume_fieldset' aria-describedby="validate_resume">
+    <legend>
+      <label aria-label="required" id="resume">
+        Resume/CV <span class='asterisk'>*</span>
+      </label>
+    </legend>
+  
+<div class="attach-or-paste " required="required" data-allow-s3="true" data-field="resume" data-file-types="[&quot;pdf&quot;,&quot;doc&quot;,&quot;docx&quot;,&quot;txt&quot;,&quot;rtf&quot;]" data-model="job_application">
+
+  <div class="drop-zone hidden">
+    Drop files here
+  </div>
+
+  <div id="resume_chosen" class="chosen">
+    <img alt="resume chosen" src="https://boards.cdn.greenhouse.io/assets/file-296f4c2a42607d24e6901b7c58b0693d4178df7fe4edf1b50e9585efdfad7d39.png" />&nbsp;&nbsp;
+    <span id="resume_filename"></span>
+    <button name="button" type="button" class="unstyled-button remove" aria-label="Remove attachment"><img width="11" height="11" alt="Remove attachment" src="https://boards.cdn.greenhouse.io/assets/cancellation/x-00cb7c69bded92bc90f03e0028a3457a4905b1e28c8a7fe16b792086c4288c29.png" /></button>
+</div>
+  <div class="link-container">
+    <button name="button" type="button" data-source="attach" class="unstyled-button link-button" aria-describedby="resume-allowable-file-types">Attach</button>
+
+        <a data-source="dropbox" href="#">Dropbox</a>
+
+
+      <button name="button" type="button" data-source="paste" class="unstyled-button link-button" aria-pressed="false">or enter manually</button>
+</div>  <div data-messages="uploaders"></div>
+
+  <div class="validation-anchor" id="validate_resume" style="display: none"></div>
+  <div id="resume-allowable-file-types" class="file-types">
+    (File types: pdf, doc, docx, txt, rtf)
+  </div>
+
+  <div class="progress-bar">
+    <div class="upload">
+      <div class="progress"><div class="bar" style="width: 0%"></div></div>
+    </div>
+    <a href="#" class="cancel">
+      <img width="11" height="11" alt="Cancel" src="https://boards.cdn.greenhouse.io/assets/cancellation/x-00cb7c69bded92bc90f03e0028a3457a4905b1e28c8a7fe16b792086c4288c29.png" />
+    </a>
+</div>
+    <textarea name="job_application[resume_text]" id="resume_text" class="paste" title="Enter manually">
+</textarea>
+
+</div>
+
+  </fieldset>
+</div>
+
+  <div class='field'>
+    <fieldset id='cover_letter_fieldset' aria-describedby="validate_cover_letter">
+      <legend>
+        <label id='cover_letter' aria-label="">
+          Cover Letter
+        </label>
+      </legend>
+      
+<div class="attach-or-paste " data-allow-s3="true" data-field="cover_letter" data-file-types="[&quot;pdf&quot;,&quot;doc&quot;,&quot;docx&quot;,&quot;txt&quot;,&quot;rtf&quot;]" data-model="job_application">
+
+  <div class="drop-zone hidden">
+    Drop files here
+  </div>
+
+  <div id="cover_letter_chosen" class="chosen">
+    <img alt="cover_letter chosen" src="https://boards.cdn.greenhouse.io/assets/file-296f4c2a42607d24e6901b7c58b0693d4178df7fe4edf1b50e9585efdfad7d39.png" />&nbsp;&nbsp;
+    <span id="cover_letter_filename"></span>
+    <button name="button" type="button" class="unstyled-button remove" aria-label="Remove attachment"><img width="11" height="11" alt="Remove attachment" src="https://boards.cdn.greenhouse.io/assets/cancellation/x-00cb7c69bded92bc90f03e0028a3457a4905b1e28c8a7fe16b792086c4288c29.png" /></button>
+</div>
+  <div class="link-container">
+    <button name="button" type="button" data-source="attach" class="unstyled-button link-button" aria-describedby="cover_letter-allowable-file-types">Attach</button>
+
+        <a data-source="dropbox" href="#">Dropbox</a>
+
+
+      <button name="button" type="button" data-source="paste" class="unstyled-button link-button" aria-pressed="false">or enter manually</button>
+</div>  <div data-messages="uploaders"></div>
+
+  <div class="validation-anchor" id="validate_cover_letter" style="display: none"></div>
+  <div id="cover_letter-allowable-file-types" class="file-types">
+    (File types: pdf, doc, docx, txt, rtf)
+  </div>
+
+  <div class="progress-bar">
+    <div class="upload">
+      <div class="progress"><div class="bar" style="width: 0%"></div></div>
+    </div>
+    <a href="#" class="cancel">
+      <img width="11" height="11" alt="Cancel" src="https://boards.cdn.greenhouse.io/assets/cancellation/x-00cb7c69bded92bc90f03e0028a3457a4905b1e28c8a7fe16b792086c4288c29.png" />
+    </a>
+</div>
+    <textarea name="job_application[cover_letter_text]" id="cover_letter_text" class="paste" title="Enter manually">
+</textarea>
+
+</div>
+
+    </fieldset>
+  </div>
+
+
+            <span id="education_instructions">
+              When autocomplete results are available use up and down arrows to review
+            </span>
+
+            <div id="education_section"></div>
+
+<a id="add_education" href="#">
+  + Add Another <span class="offscreen">Education</span>
+</a>
+
+        </div>
+
+            <hr/>
+
+          <div id='custom_fields'>
+            <div class="field">
+  <label>Street Address<span class="asterisk">&nbsp;*</span>
+    <br/>
+    
+    <input type="hidden" name="job_application[answers_attributes][0][question_id]" id="job_application_answers_attributes_0_question_id" value="35824824" />
+<input type="hidden" name="job_application[answers_attributes][0][priority]" id="job_application_answers_attributes_0_priority" value="0" />
+
+<input type="text" name="job_application[answers_attributes][0][text_value]" id="job_application_answers_attributes_0_text_value" aria-required="true" maxlength="255" autocomplete="custom-question-street-address" />
+
+
+</label></div>
+<div class="field">
+  <label>Address (Suite, Apt)
+    <br/>
+    
+    <input type="hidden" name="job_application[answers_attributes][1][question_id]" id="job_application_answers_attributes_1_question_id" value="35824825" />
+<input type="hidden" name="job_application[answers_attributes][1][priority]" id="job_application_answers_attributes_1_priority" value="1" />
+
+<input type="text" name="job_application[answers_attributes][1][text_value]" id="job_application_answers_attributes_1_text_value" aria-required="false" maxlength="255" autocomplete="custom-question-address-suite-apt" />
+
+
+</label></div>
+<div class="field">
+  <label>City<span class="asterisk">&nbsp;*</span>
+    <br/>
+    
+    <input type="hidden" name="job_application[answers_attributes][2][question_id]" id="job_application_answers_attributes_2_question_id" value="35824826" />
+<input type="hidden" name="job_application[answers_attributes][2][priority]" id="job_application_answers_attributes_2_priority" value="2" />
+
+<input type="text" name="job_application[answers_attributes][2][text_value]" id="job_application_answers_attributes_2_text_value" aria-required="true" maxlength="255" autocomplete="custom-question-city" />
+
+
+</label></div>
+<div class="field">
+  <label>State<span class="asterisk">&nbsp;*</span>
+    <br/>
+    
+    <input type="hidden" name="job_application[answers_attributes][3][question_id]" id="job_application_answers_attributes_3_question_id" value="35824827" />
+<input type="hidden" name="job_application[answers_attributes][3][priority]" id="job_application_answers_attributes_3_priority" value="3" />
+
+<input type="text" name="job_application[answers_attributes][3][text_value]" id="job_application_answers_attributes_3_text_value" aria-required="true" maxlength="255" autocomplete="custom-question-state" />
+
+
+</label></div>
+<div class="field">
+  <label>Zip<span class="asterisk">&nbsp;*</span>
+    <br/>
+    
+    <input type="hidden" name="job_application[answers_attributes][4][question_id]" id="job_application_answers_attributes_4_question_id" value="35824828" />
+<input type="hidden" name="job_application[answers_attributes][4][priority]" id="job_application_answers_attributes_4_priority" value="4" />
+
+<input type="text" name="job_application[answers_attributes][4][text_value]" id="job_application_answers_attributes_4_text_value" aria-required="true" maxlength="255" autocomplete="custom-question-zip" />
+
+
+</label></div>
+<div class="field">
+  <label>Are you legally allowed to work in the United States<span class="asterisk">&nbsp;*</span>
+    <br/>
+    
+    <input type="hidden" name="job_application[answers_attributes][5][question_id]" id="job_application_answers_attributes_5_question_id" value="35824829" />
+<input type="hidden" name="job_application[answers_attributes][5][priority]" id="job_application_answers_attributes_5_priority" value="5" />
+
+<select name="job_application[answers_attributes][5][boolean_value]" id="job_application_answers_attributes_5_boolean_value" aria-required="true"><option value="">--</option>
+<option value="1">Yes</option>
+<option value="0">No</option></select>
+
+
+</label></div>
+<div class="field">
+  <label>Will you now or in the future require sponsorship for employment <span class="asterisk">&nbsp;*</span>
+    <br/>
+    
+    <input type="hidden" name="job_application[answers_attributes][6][question_id]" id="job_application_answers_attributes_6_question_id" value="35824830" />
+<input type="hidden" name="job_application[answers_attributes][6][priority]" id="job_application_answers_attributes_6_priority" value="6" />
+
+<select name="job_application[answers_attributes][6][boolean_value]" id="job_application_answers_attributes_6_boolean_value" aria-required="true"><option value="">--</option>
+<option value="1">Yes</option>
+<option value="0">No</option></select>
+
+
+</label></div>
+<div class="field">
+  <label>If yes, please specify
+    <br/>
+    
+    <input type="hidden" name="job_application[answers_attributes][7][question_id]" id="job_application_answers_attributes_7_question_id" value="35824831" />
+<input type="hidden" name="job_application[answers_attributes][7][priority]" id="job_application_answers_attributes_7_priority" value="7" />
+
+<input type="text" name="job_application[answers_attributes][7][text_value]" id="job_application_answers_attributes_7_text_value" aria-required="false" maxlength="255" autocomplete="custom-question-if-yes-please-specify" />
+
+
+</label></div>
+<div class="field">
+  <label>LinkedIn Profile
+    <br/>
+    
+    <input type="hidden" name="job_application[answers_attributes][8][question_id]" id="job_application_answers_attributes_8_question_id" value="35824832" />
+<input type="hidden" name="job_application[answers_attributes][8][priority]" id="job_application_answers_attributes_8_priority" value="8" />
+
+<input type="text" name="job_application[answers_attributes][8][text_value]" id="job_application_answers_attributes_8_text_value" aria-required="false" maxlength="255" autocomplete="custom-question-linkedin-profile" />
+
+
+</label></div>
+<div class="field">
+  <label>Website/Portfolio
+    <br/>
+    
+    <input type="hidden" name="job_application[answers_attributes][9][question_id]" id="job_application_answers_attributes_9_question_id" value="35824749" />
+<input type="hidden" name="job_application[answers_attributes][9][priority]" id="job_application_answers_attributes_9_priority" value="9" />
+
+<input type="text" name="job_application[answers_attributes][9][text_value]" id="job_application_answers_attributes_9_text_value" maxlength="255" autocomplete="custom-question-websiteportfolio" />
+
+
+</label></div>
+<div class="field">
+  <label>Pronouns
+    <br/>
+    
+    <input type="hidden" name="job_application[answers_attributes][10][question_id]" id="job_application_answers_attributes_10_question_id" value="35824833" />
+<input type="hidden" name="job_application[answers_attributes][10][priority]" id="job_application_answers_attributes_10_priority" value="10" />
+
+<select name="job_application[answers_attributes][10][answer_selected_options_attributes][10][question_option_id]" id="job_application_answers_attributes_10_answer_selected_options_attributes_10_question_option_id" style="width: 200px;"><option value="">Please select</option><option value="116036118">he/him/his</option>
+<option value="116036119">she/her/hers</option>
+<option value="116036120">they/them/theirs</option>
+<option value="116036121">ze/hir</option></select>
+
+
+</label></div>
+<div class="field">
+  <label>How did you hear about this job?
+    <br/>
+    
+    <input type="hidden" name="job_application[answers_attributes][11][question_id]" id="job_application_answers_attributes_11_question_id" value="35824834" />
+<input type="hidden" name="job_application[answers_attributes][11][priority]" id="job_application_answers_attributes_11_priority" value="11" />
+
+<input type="text" name="job_application[answers_attributes][11][text_value]" id="job_application_answers_attributes_11_text_value" aria-required="false" maxlength="255" autocomplete="custom-question-how-did-you-hear-about-this-job" />
+
+
+</label></div>
+
+          </div>
+
+
+          <hr/>
+<div id="eeoc_fields">
+  <h3 id="eeoc_title">Voluntary Self-Identification</h3>
+
+  <p> For government reporting purposes, we ask candidates to respond to the below self-identification survey. Completion of the form is entirely <strong>voluntary</strong>. Whatever your decision, it will not be considered in the hiring process or thereafter. Any information that you do provide will be recorded and maintained in a confidential file. </p>
+<p> As set forth in BGB Group’s Equal Employment Opportunity policy, we do not discriminate on the basis of any protected group status under any applicable law. </p>
+
+    
+<div class="field" id="gender_dropdown_container">
+  <label for="job_application_gender">Gender</label>
+  <select name="job_application[gender]" id="job_application_gender"><option value="">Please select</option><option value="1">Male</option>
+<option value="2">Female</option>
+<option value="3">Decline To Self Identify</option></select>
+</div>    
+<div class="field" id="hispanic_ethnicity_dropdown_container">
+  <label for="job_application_hispanic_ethnicity">Are you Hispanic/Latino?</label>
+  <select name="job_application[hispanic_ethnicity]" id="job_application_hispanic_ethnicity"><option value="">Please select</option><option value="Yes">Yes</option>
+<option value="No">No</option>
+<option value="Decline To Self Identify">Decline To Self Identify</option></select>
+</div>    
+<div class="field" id="race_dropdown_container">
+  <label for="job_application_race">Please identify your race</label>
+  <select name="job_application[race]" id="job_application_race"><option value="">Please select</option><option value="1">American Indian or Alaskan Native</option>
+<option value="2">Asian</option>
+<option value="3">Black or African American</option>
+<option hidden="hidden" value="4">Hispanic or Latino</option>
+<option value="5">White</option>
+<option value="6">Native Hawaiian or Other Pacific Islander</option>
+<option value="7">Two or More Races</option>
+<option value="8">Decline To Self Identify</option></select>
+</div>
+    <a target="_blank" href="https://boards.cdn.greenhouse.io/docs/RaceEthnicityDefinitions.pdf">
+      Race &amp; Ethnicity Definitions
+</a>
+    <p> If you believe you belong to any of the categories of protected veterans listed below, please indicate by making the appropriate selection.  As a government contractor subject to the Vietnam Era Veterans Readjustment Assistance Act (VEVRAA), we request this information in order to measure the effectiveness of the outreach and positive recruitment efforts we undertake pursuant to VEVRAA. Classification of protected categories is as follows&#58; </p>
+<p> A "disabled veteran" is one of the following&#58; a veteran of the U.S. military, ground, naval or air service who is entitled to compensation (or who but for the receipt of military retired pay would be entitled to compensation) under laws administered by the Secretary of Veterans Affairs; or a person who was discharged or released from active duty because of a service-connected disability. </p>
+<p> A "recently separated veteran" means any veteran during the three-year period beginning on the date of such veteran's discharge or release from active duty in the U.S. military, ground, naval, or air service. </p>
+<p> An "active duty wartime or campaign badge veteran" means a veteran who served on active duty in the U.S. military, ground, naval or air service during a war, or in a campaign or expedition for which a campaign badge has been authorized under the laws administered by the Department of Defense. </p>
+<p> An "Armed forces service medal veteran" means a veteran who, while serving on active duty in the U.S. military, ground, naval or air service, participated in a United States military operation for which an Armed Forces service medal was awarded pursuant to Executive Order 12985. </p>
+
+    
+<div class="field" id="veteran_status_dropdown_container">
+  <label for="job_application_veteran_status">Veteran Status</label>
+  <select name="job_application[veteran_status]" id="job_application_veteran_status"><option value="">Please select</option><option value="1">I am not a protected veteran</option>
+<option value="2">I identify as one or more of the classifications of a protected veteran</option>
+<option value="3">I don&#39;t wish to answer</option></select>
+</div>
+    <hr/>
+
+    <div class="eeoc_form_data"> <p>Form CC-305</p> <p>OMB Control Number 1250-0005</p> <p>Expires 05/31/2023 </p> </div>
+<h3 id="disability_status_header">Voluntary Self-Identification of Disability</h3>
+<strong>Why are you being asked to complete this form?</strong>
+<p> We are a federal contractor or subcontractor required by law to provide equal employment opportunity to qualified people with disabilities. We are also required to measure our progress toward having at least 7% of our workforce be individuals with disabilities. To do this, we must ask applicants and employees if they have a disability or have ever had a disability. Because a person may become disabled at any time, we ask all of our employees to update their information at least every five years. </p>
+<p> Identifying yourself as an individual with a disability is voluntary, and we hope that you will choose to do so. Your answer will be maintained confidentially and not be seen by selecting officials or anyone else involved in making personnel decisions. Completing the form will not negatively impact you in any way, regardless of whether you have self-identified in the past. For more information about this form or the equal employment obligations of federal contractors under Section 503 of the Rehabilitation Act, visit the U.S. Department of Labor’s Office of Federal Contract Compliance Programs (OFCCP) website at <a href="https://www.dol.gov/ofccp" target="_blank">www.dol.gov/ofccp</a>. </p>
+<strong>How do you know if you have a disability?</strong> <p> You are considered to have a disability if you have a physical or mental impairment or medical condition that substantially limits a major life activity, or if you have a history or record of such an impairment or medical condition. </p>
+<p>Disabilities include, but are not limited to:</p> <ul> <li>Autism</li> <li>Autoimmune disorder, for example, lupus, fibromyalgia, rheumatoid arthritis, or HIV/AIDS</li> <li>Blind or low vision</li> <li>Cancer</li> <li>Cardiovascular or heart disease</li> <li>Celiac disease</li> <li>Cerebral palsy</li> <li>Deaf or hard of hearing</li> <li>Depression or anxiety</li> <li>Diabetes</li> <li>Epilepsy</li> <li>Gastrointestinal disorders, for example, Crohn's Disease, or irritable bowel syndrome</li> <li>Intellectual disability</li> <li>Missing limbs or partially missing limbs</li> <li>Nervous system condition for example, migraine headaches, Parkinson’s disease, or Multiple sclerosis (MS)</li> <li>Psychiatric condition, for example, bipolar disorder, schizophrenia, PTSD, or major depression</li> </ul>
+
+    
+<div class="field" id="disability_status_dropdown_container">
+  <label for="job_application_disability_status">Disability Status</label>
+  <select name="job_application[disability_status]" id="job_application_disability_status"><option value="">Please select</option><option value="1">Yes, I have a disability, or have a history/record of having a disability</option>
+<option value="2">No, I don&#39;t have a disability, or a history/record of having a disability</option>
+<option value="3">I don&#39;t wish to answer</option></select>
+</div>
+    <p> PUBLIC BURDEN STATEMENT&#58;  According to the Paperwork Reduction Act of 1995 no persons are required to respond to a collection of information unless such collection displays a valid OMB control number. This survey should take about 5 minutes to complete. </p>
+</div>
+
+
+
+          <div id='captcha_container'></div>
+  <hr/>
+
+
+
+        <div id='error_message'></div>
+
+        <div id='submit_buttons'>
+          <input
+            type='button'
+            value='Submit Application'
+            id='submit_app'
+            class='button'>
+        </div>
+</form>    </div>
+</div>
+
+  <div class="education education-template hidden" data-education-required="true" data-subfield-config="true">
+  <hr/>
+  <fieldset>
+
+      <div class='field'>
+        <label for="education_school_name">
+          School
+            <span class='asterisk'>*</span>
+        </label>
+
+        <input type="hidden" name="job_application[educations][][school_name_id]" id="education_school_name" class="school-name background-field" placeholder="Select a School" aria-required="true" data-url="https://boards-api.greenhouse.io/v1/boards/bgbgroup/education/schools" data-validators="[{&quot;type&quot;:&quot;notBlank&quot;,&quot;key&quot;:&quot;SchoolNameRequired&quot;}]" />
+
+        <a class="remove-background-field" href="#"><img alt="Remove Education" src="https://boards.cdn.greenhouse.io/assets/svg/close-2388e0f798509ffdefd9fe48321955a399f62a302d4f33f96e798f2272a7b52d.svg" /></a>
+      </div>
+
+      <div class='field'>
+        <label for="education_degree">
+          Degree
+            <span class='asterisk'>*</span>
+        </label>
+
+        <select name="job_application[educations][][degree_id]" id="education_degree" class="degree background-field" aria-required="true" data-placeholder="Select a Degree" data-validators="[{&quot;type&quot;:&quot;notBlank&quot;,&quot;key&quot;:&quot;DegreeRequired&quot;}]"><option value=""></option>
+<option value="1772982">High School</option>
+<option value="1773015">Associate&#39;s Degree</option>
+<option value="1773027">Bachelor&#39;s Degree</option>
+<option value="1773043">Master&#39;s Degree</option>
+<option value="1773060">Master of Business Administration (M.B.A.)</option>
+<option value="1773065">Juris Doctor (J.D.)</option>
+<option value="1773091">Doctor of Medicine (M.D.)</option>
+<option value="1773121">Doctor of Philosophy (Ph.D.)</option>
+<option value="1773142">Engineer&#39;s Degree</option>
+<option value="1773158">Other</option></select>
+      </div>
+
+      <div class='field'>
+        <label for="education_discipline">
+          Discipline
+            <span class='asterisk'>*</span>
+        </label>
+
+        <select name="job_application[educations][][discipline_id]" id="education_discipline" class="discipline background-field" aria-required="true" data-placeholder="Select a Discipline" data-validators="[{&quot;type&quot;:&quot;notBlank&quot;,&quot;key&quot;:&quot;DisciplineRequired&quot;}]"><option value=""></option>
+<option value="1773299">Accounting</option>
+<option value="1773355">African Studies</option>
+<option value="1773423">Agriculture</option>
+<option value="1773484">Anthropology</option>
+<option value="1773532">Applied Health Services</option>
+<option value="1773557">Architecture</option>
+<option value="1773589">Art</option>
+<option value="1773619">Asian Studies</option>
+<option value="1773639">Biology</option>
+<option value="1773658">Business</option>
+<option value="1773682">Business Administration</option>
+<option value="1773704">Chemistry</option>
+<option value="1773725">Classical Languages</option>
+<option value="1773748">Communications &amp; Film</option>
+<option value="1773767">Computer Science</option>
+<option value="1773790">Dentistry</option>
+<option value="1773817">Developing Nations</option>
+<option value="1773837">Discipline Unknown</option>
+<option value="1773869">Earth Sciences</option>
+<option value="1773887">Economics</option>
+<option value="1773904">Education</option>
+<option value="1773920">Electronics</option>
+<option value="1773939">Engineering</option>
+<option value="1774012">English Studies</option>
+<option value="1774025">Environmental Studies</option>
+<option value="1774042">European Studies</option>
+<option value="1774057">Fashion</option>
+<option value="1774073">Finance</option>
+<option value="1774090">Fine Arts</option>
+<option value="1774107">General Studies</option>
+<option value="1774127">Health Services</option>
+<option value="1774146">History</option>
+<option value="1774164">Human Resources Management</option>
+<option value="1774181">Humanities</option>
+<option value="1774198">Industrial Arts &amp; Carpentry</option>
+<option value="1774220">Information Systems</option>
+<option value="1774242">International Relations</option>
+<option value="1774257">Journalism</option>
+<option value="1774288">Languages</option>
+<option value="1774305">Latin American Studies</option>
+<option value="1774322">Law</option>
+<option value="1774342">Linguistics</option>
+<option value="1774371">Manufacturing &amp; Mechanics</option>
+<option value="1774390">Mathematics</option>
+<option value="1774414">Medicine</option>
+<option value="1774436">Middle Eastern Studies</option>
+<option value="1774457">Naval Science</option>
+<option value="1774479">North American Studies</option>
+<option value="1774501">Nuclear Technics</option>
+<option value="1774524">Operations Research &amp; Strategy</option>
+<option value="1774546">Organizational Theory</option>
+<option value="1774569">Philosophy</option>
+<option value="1774591">Physical Education</option>
+<option value="1774628">Physical Sciences</option>
+<option value="1774651">Physics</option>
+<option value="1774672">Political Science</option>
+<option value="1774693">Psychology</option>
+<option value="1774713">Public Policy</option>
+<option value="1774739">Public Service</option>
+<option value="1774761">Religious Studies</option>
+<option value="1774790">Russian &amp; Soviet Studies</option>
+<option value="1774815">Scandinavian Studies</option>
+<option value="1774838">Science</option>
+<option value="1774858">Slavic Studies</option>
+<option value="1774883">Social Science</option>
+<option value="1774908">Social Sciences</option>
+<option value="1774929">Sociology</option>
+<option value="1774956">Speech</option>
+<option value="1774981">Statistics &amp; Decision Theory</option>
+<option value="1775002">Urban Studies</option>
+<option value="1775028">Veterinary Medicine</option>
+<option value="13010949">Other</option></select>
+      </div>
+
+
+      <div class='field'>
+        <fieldset>
+          <legend>
+            <label>
+              End Date
+
+                <span class='asterisk'>*</span>
+            </label>
+          </legend>
+
+            <input type="text" name="job_application[educations][][end_date][month]" class="end-date-month month background-field" placeholder="MM" maxlength="2" aria-label="Education End Month" aria-required="true" data-validators="[{&quot;type&quot;:&quot;monthFormat&quot;,&quot;key&quot;:&quot;EducationMonthFormat&quot;}]" />
+
+            <input type="text" name="job_application[educations][][end_date][year]" class="end-date-year year background-field" placeholder="YYYY" maxlength="4" aria-label="Education End Year" aria-required="true" data-validators="[{&quot;type&quot;:&quot;yearFormat&quot;,&quot;key&quot;:&quot;EducationYearFormat&quot;}]" />
+        </fieldset>
+      </div>
+  </fieldset>
+</div>
+
+
+
+
+    </div>
+  </div>
+
+    
+      <script src="https://boards.cdn.greenhouse.io/assets/application-faf38de05bcb7b4f4363b2cd97e8a90e6f36b1c178b5a2bc06b9c904745ebdf5.js"></script>
+  <script src="https://boards.cdn.greenhouse.io/assets/embed/window_sizing-f151963cd54735a35dbe973843448a89748d254efc3cdf98b3f15d56fdb2d397.js"></script>
+
+  <div class="s3-upload-form" data-presigned-form="resume"></div>
+
+  <div class="s3-upload-form" data-presigned-form="cover_letter"></div>
+<script class="js-metadata" data-key="JBEN.hideCaptcha" data-type="boolean" data-value="false" type="text/configuration"></script><script class="js-metadata" data-key="JBEN.alternateCaptcha" data-type="boolean" data-value="false" type="text/configuration"></script><script class="js-metadata" data-key="JBEN.geetestPath" data-type="string" data-value="/geetest" type="text/configuration"></script><script class="js-metadata" data-key="JBEN.Recaptcha.publicKey" data-type="string" data-value="6LfZS8kaAAAAAG853sBcz6KRVtBgvRVFoF7qk4mL" type="text/configuration"></script>      <script type="text/javascript">
+        var captchaLoadCallback = function() {
+          grecaptcha.enterprise.execute(JBEN.Recaptcha.publicKey, { action: 'load_job' }).then(function(token) {
+            // Future: send this assessment token to the server?
+          });
+        };
+      </script>
+      <script src='https://www.google.com/recaptcha/enterprise.js?onload=captchaLoadCallback&render=6LfZS8kaAAAAAG853sBcz6KRVtBgvRVFoF7qk4mL' async></script>
+
+  <script src="https://boards.cdn.greenhouse.io/assets/show_init-2f5fdd5c5ac90ad3c0ac0d76992d75eafc694581fdc565f42aa90e0fdc3c5d2c.js"></script>
+  
+
+
+  <script class="js-metadata" data-key="JBEN.PublicJobBoard.UncacheableAttributes.path" data-type="string" data-value="/uncacheable_attributes.json" type="text/configuration"></script><script class="js-metadata" data-key="LocationControl.Providers.Mapbox.apiKey" data-type="string" data-value="pk.eyJ1IjoiamNtdWxsZXIiLCJhIjoiY2l2YmI2ZG82MDA4bzJ6b3UwNTB1enkycSJ9.oRrvDNk1PKKA76v6qSRFXg" type="text/configuration"></script>
+  <script class="js-metadata" data-key="LocationControl.Providers.Pelias.apiKey" data-type="string" data-value="ge-39f1178289d5d0c5" type="text/configuration"></script>
+  <script type="application/ld+json">
+  {"@context":"schema.org","@type":"JobPosting","hiringOrganization":{"@type":"Organization","name":"BGB Group","logo":"https://recruiting.cdn.greenhouse.io/external_greenhouse_job_boards/logos/000/001/470/resized/BGB_GROUP_Logo_293_CG10_RGB.jpg?1441116201"},"title":"Spring Semester 2023 Account Internship","datePosted":"2022-09-16","jobLocation":{"@type":"Place","address":{"@type":"PostalAddress","addressLocality":"New York City, New York, United States","addressRegion":"NY","addressCountry":null,"postalCode":null}},"description":"\u003cp\u003e\u003cstrong\u003e\u003cspan data-contrast=\"none\"\u003eOur Agency\u003c/span\u003e\u003c/strong\u003e\u003cspan data-contrast=\"none\"\u003e \u003c/span\u003e\u003cspan data-ccp-props=\"{\u0026quot;134233117\u0026quot;:true,\u0026quot;134233118\u0026quot;:true,\u0026quot;201341983\u0026quot;:0,\u0026quot;335559739\u0026quot;:160,\u0026quot;335559740\u0026quot;:240}\"\u003e\u0026nbsp;\u003c/span\u003e\u003c/p\u003e\n\u003cp\u003e\u003cem\u003e\u003cspan data-contrast=\"none\"\u003eBGB is a healthcare communications agency that offers a wide range of services, including traditional pharmaceutical advertising, promotional medical education, payer marketing, and consulting services. Known for excellence and professionalism, we’re hired as strategic and creative partners by our biopharmaceutical clients to drive category/brand awareness and growth. \u003c/span\u003e\u003c/em\u003e\u003cspan data-contrast=\"none\"\u003e \u003c/span\u003e\u003cspan data-ccp-props=\"{\u0026quot;134233117\u0026quot;:true,\u0026quot;134233118\u0026quot;:true,\u0026quot;201341983\u0026quot;:0,\u0026quot;335559739\u0026quot;:160,\u0026quot;335559740\u0026quot;:240}\"\u003e\u0026nbsp;\u003c/span\u003e\u003c/p\u003e\n\u003cp\u003e\u003cem\u003eWe have a flexible workforce, offering hybrid and remote job opportunities. Our home base is in SoHo, New York City, where we have our large, light-filled duplex loft that features panoramic views of lower Manhattan.\u003cspan data-ccp-props=\"{\u0026quot;134233117\u0026quot;:true,\u0026quot;134233118\u0026quot;:true,\u0026quot;201341983\u0026quot;:0,\u0026quot;335559740\u0026quot;:240}\"\u003e\u0026nbsp;\u003c/span\u003e\u003c/em\u003e\u003c/p\u003e\n\u003cp\u003e\u003cspan data-contrast=\"none\"\u003eWe’re on the lookout for Account Management Interns \u003cstrong\u003efor school credit this upcoming Spring semester \u003c/strong\u003ewho:\u003c/span\u003e\u003cspan data-ccp-props=\"{\u0026quot;134233117\u0026quot;:true,\u0026quot;134233118\u0026quot;:true,\u0026quot;201341983\u0026quot;:0,\u0026quot;335559739\u0026quot;:160,\u0026quot;335559740\u0026quot;:240}\"\u003e\u0026nbsp;\u003c/span\u003e\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003cspan data-contrast=\"none\"\u003eWill be graduating within a year with a Bachelor’s or Master’s degree in science, communications, marketing/advertising, or healthcare\u003c/span\u003e\u003cspan data-ccp-props=\"{\u0026quot;134233117\u0026quot;:true,\u0026quot;134233118\u0026quot;:true,\u0026quot;201341983\u0026quot;:0,\u0026quot;335559739\u0026quot;:160,\u0026quot;335559740\u0026quot;:240}\"\u003e\u0026nbsp;\u003c/span\u003e\u003c/li\u003e\n\u003cli\u003e\u003cspan data-contrast=\"none\"\u003eHave a strong career interest in healthcare communications\u003c/span\u003e\u003cspan data-ccp-props=\"{\u0026quot;134233117\u0026quot;:true,\u0026quot;134233118\u0026quot;:true,\u0026quot;201341983\u0026quot;:0,\u0026quot;335559739\u0026quot;:160,\u0026quot;335559740\u0026quot;:240}\"\u003e\u0026nbsp;\u003c/span\u003e\u003c/li\u003e\n\u003cli\u003e\u003cspan data-contrast=\"none\"\u003eAre self-starters that take initiative and think quickly on their feet\u003c/span\u003e\u003cspan data-ccp-props=\"{\u0026quot;134233117\u0026quot;:true,\u0026quot;134233118\u0026quot;:true,\u0026quot;201341983\u0026quot;:0,\u0026quot;335559739\u0026quot;:160,\u0026quot;335559740\u0026quot;:240}\"\u003e\u0026nbsp;\u003c/span\u003e\u003c/li\u003e\n\u003cli\u003e\u003cspan data-contrast=\"none\"\u003ePossess strong verbal, presentation, and written communication skills\u003c/span\u003e\u003cspan data-ccp-props=\"{\u0026quot;134233117\u0026quot;:true,\u0026quot;134233118\u0026quot;:true,\u0026quot;201341983\u0026quot;:0,\u0026quot;335559739\u0026quot;:160,\u0026quot;335559740\u0026quot;:240}\"\u003e\u0026nbsp;\u003c/span\u003e\u003c/li\u003e\n\u003cli\u003e\u003cspan data-contrast=\"none\"\u003eEnjoy interacting with people and have a track record of working successfully in a team-based environment\u003c/span\u003e\u003cspan data-ccp-props=\"{\u0026quot;134233117\u0026quot;:true,\u0026quot;134233118\u0026quot;:true,\u0026quot;201341983\u0026quot;:0,\u0026quot;335559739\u0026quot;:160,\u0026quot;335559740\u0026quot;:240}\"\u003e\u0026nbsp;\u003c/span\u003e\u003c/li\u003e\n\u003cli\u003e\u003cspan data-contrast=\"none\"\u003eWant an exciting internship opportunity for school credit, with potential for future full-time employment\u003c/span\u003e\u003cspan data-ccp-props=\"{\u0026quot;134233117\u0026quot;:true,\u0026quot;134233118\u0026quot;:true,\u0026quot;201341983\u0026quot;:0,\u0026quot;335559739\u0026quot;:160,\u0026quot;335559740\u0026quot;:240}\"\u003e\u0026nbsp;\u003c/span\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003e\u003cstrong\u003e\u003cspan data-contrast=\"none\"\u003eSpecific Responsibilities \u003c/span\u003e\u003c/strong\u003e\u003cspan data-ccp-props=\"{\u0026quot;134233117\u0026quot;:true,\u0026quot;134233118\u0026quot;:true,\u0026quot;201341983\u0026quot;:0,\u0026quot;335559739\u0026quot;:160,\u0026quot;335559740\u0026quot;:240}\"\u003e\u0026nbsp;\u003c/span\u003e\u003c/p\u003e\n\u003cp\u003e\u003cspan data-contrast=\"none\"\u003eThe Account Management Intern will shadow our account team and provide support in areas where they most need it. These areas vary and may include:\u003c/span\u003e\u003cspan data-ccp-props=\"{\u0026quot;134233117\u0026quot;:true,\u0026quot;134233118\u0026quot;:true,\u0026quot;201341983\u0026quot;:0,\u0026quot;335559739\u0026quot;:160,\u0026quot;335559740\u0026quot;:240}\"\u003e\u0026nbsp;\u003c/span\u003e\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003cspan data-contrast=\"none\"\u003eResearching background information on new products and/or therapy areas\u003c/span\u003e\u003cspan data-ccp-props=\"{\u0026quot;134233117\u0026quot;:true,\u0026quot;134233118\u0026quot;:true,\u0026quot;201341983\u0026quot;:0,\u0026quot;335559739\u0026quot;:160,\u0026quot;335559740\u0026quot;:240}\"\u003e\u0026nbsp;\u003c/span\u003e\u003c/li\u003e\n\u003cli\u003e\u003cspan data-contrast=\"none\"\u003eBrainstorming new ideas for projects or new business initiatives\u003c/span\u003e\u003cspan data-ccp-props=\"{\u0026quot;134233117\u0026quot;:true,\u0026quot;134233118\u0026quot;:true,\u0026quot;201341983\u0026quot;:0,\u0026quot;335559739\u0026quot;:160,\u0026quot;335559740\u0026quot;:240}\"\u003e\u0026nbsp;\u003c/span\u003e\u003c/li\u003e\n\u003cli\u003e\u003cspan data-contrast=\"none\"\u003ePreparing materials for internal and client meetings\u003c/span\u003e\u003cspan data-ccp-props=\"{\u0026quot;134233117\u0026quot;:true,\u0026quot;134233118\u0026quot;:true,\u0026quot;201341983\u0026quot;:0,\u0026quot;335559739\u0026quot;:160,\u0026quot;335559740\u0026quot;:240}\"\u003e\u0026nbsp;\u003c/span\u003e\u003c/li\u003e\n\u003cli\u003e\u003cspan data-contrast=\"none\"\u003eAssistance on active projects in development\u003c/span\u003e\u003cspan data-ccp-props=\"{\u0026quot;134233117\u0026quot;:true,\u0026quot;134233118\u0026quot;:true,\u0026quot;201341983\u0026quot;:0,\u0026quot;335559739\u0026quot;:160,\u0026quot;335559740\u0026quot;:240}\"\u003e\u0026nbsp;\u003c/span\u003e\u003c/li\u003e\n\u003cli\u003e\u003cspan data-contrast=\"none\"\u003eProducing meeting summaries and following up on next steps with team members\u003c/span\u003e\u003cspan data-ccp-props=\"{\u0026quot;134233117\u0026quot;:true,\u0026quot;134233118\u0026quot;:true,\u0026quot;201341983\u0026quot;:0,\u0026quot;335559739\u0026quot;:160,\u0026quot;335559740\u0026quot;:240}\"\u003e\u0026nbsp;\u003c/span\u003e\u003c/li\u003e\n\u003cli\u003e\u003cspan data-contrast=\"none\"\u003eDeveloping company marketing and communications\u003c/span\u003e\u003cspan data-ccp-props=\"{\u0026quot;134233117\u0026quot;:true,\u0026quot;134233118\u0026quot;:true,\u0026quot;201341983\u0026quot;:0,\u0026quot;335559739\u0026quot;:160,\u0026quot;335559740\u0026quot;:240}\"\u003e\u0026nbsp;\u003c/span\u003e\u003c/li\u003e\n\u003cli\u003e\u003cspan data-contrast=\"none\"\u003ePlanning internal agency programs and events\u003c/span\u003e\u003cspan data-ccp-props=\"{\u0026quot;134233117\u0026quot;:true,\u0026quot;134233118\u0026quot;:true,\u0026quot;201341983\u0026quot;:0,\u0026quot;335559739\u0026quot;:160,\u0026quot;335559740\u0026quot;:240}\"\u003e\u0026nbsp;\u003c/span\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003e\u003cstrong\u003e\u003cspan data-contrast=\"none\"\u003eReady for an exciting, challenging semester? Apply now!\u003c/span\u003e\u003c/strong\u003e\u003cspan data-ccp-props=\"{\u0026quot;134233117\u0026quot;:true,\u0026quot;134233118\u0026quot;:true,\u0026quot;201341983\u0026quot;:0,\u0026quot;335559739\u0026quot;:160,\u0026quot;335559740\u0026quot;:240}\"\u003e\u0026nbsp;\u003c/span\u003e\u003c/p\u003e"}
+</script>
+
+    <script type='text/javascript' src='https://www.dropbox.com/static/api/2/dropins.js' id='dropboxjs' data-app-key='mh9jyh4mfwjnfhj' async></script>
+
+
+
+  </body>
+</html>

@@ -1,5 +1,9 @@
 #scroller {
-  width: calc(100% + 100px);
+  /* width: calc(100% + 100px);*/
+}
+
+.overflow-hidden {
+  overflow: hidden !important;
 }
 
 .team-card__img {
@@ -8,4 +12,3 @@
 .team-img {
   clip-path: polygon(0% 0%, 86% 0%, 100% 10%, 100% 100%, 0% 100%, 0% 50%);
 }
-/* End  Scroll Hotizontal*/
