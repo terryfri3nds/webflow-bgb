@@ -31,14 +31,14 @@ cssScript.setAttribute("media", "all");
 if (window.location.hostname.endsWith(".webflow.io"))
   //DEVELOPMNENT
   cssScript.setAttribute(
-    "src",
+    "href",
     "https://cgfrse-8080.preview.csb.app/dist/css/pages/home/style.css"
   );
 //PRODUCTION
 else
   cssScript.setAttribute(
-    "src",
+    "href",
     "https://webflow-js-starter.netlify.app/css/body/style.min.css"
   );
 
-document.body.appendChild(cssScript);
+document.head.appendChild(cssScript);

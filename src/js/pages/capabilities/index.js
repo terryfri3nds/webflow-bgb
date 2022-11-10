@@ -110,16 +110,17 @@ function drawImageProp(ctx, img, x, y, w, h, offsetX, offsetY) {
     });
 });
 
-
 $(document).ready(function () {
 
-            text = {
+clippingText = {
 
-        mask : function(element)
-        {
-        $(element).splitLines({tag:"<span>"});
+    mask : function(element)
+    {
+        console.log(element)
+        element.splitLines({tag:"<span class='words'>"});
 
-        const lines = gsap.utils.toArray(element + ' span[class="words"]');
+
+        const lines = gsap.utils.toArray(element.children(".words"));
         let width = window.innerWidth
         let speed = 350 //pixels per second
         let endX = width 
@@ -132,7 +133,7 @@ $(document).ready(function () {
             trigger: element,
             start:"top 50%",
             end:"bottom 50%",
-            markers:true,
+            markers:false,
             scrub:0.3
             }
         })
@@ -142,17 +143,25 @@ $(document).ready(function () {
 
         lines.forEach(line => {
 
-            timeline.to(line, {duration:duration, color:'green', xPercent: 0, ease:'none'})
+            timeline.to(line, {duration:duration, color:'white', xPercent: 0, ease:'none'})
 
         });
-        }
     }
-            
-    const amountText = $("[class*='text-mask']").length;
-    for(i = 1; i <= amountText; i++)
-    {
-        text.mask(".text-mask" + i);
-    }
+}
+    
+
+$(".js-clipping-text").each(function(index){
+
+    clippingText.mask($(this));
 
 });
-  
+
+/*
+const amountText = $("[class*='js-clipping-text']").length;
+for(i = 1; i <= amountText; i++)
+{
+    clippingText.mask($("[class*='js-clipping-text']"));
+}
+*/
+
+});
