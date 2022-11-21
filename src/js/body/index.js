@@ -24,8 +24,8 @@ $(document).ready(function () {
       )
       .to(
         ".load-text",
-        { opacity: 0, duration: 3, ease: "slow(0.7, 0.7, false)" },
-        "9"
+        { opacity: 0, duration: 0.2, ease: "slow(2, 2, false)" },
+        "8"
       )
       .to(".fixed-loader, .load-logo, .load-text", {
         display: "none",

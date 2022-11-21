@@ -106,66 +106,126 @@ $(".cc-sticky").each(function (index) {
       render();
     }
   });
+});
+/* API GreenHouse */
 
-  /* API GreenHouse */
+async function getJobBoards() {
+  const response = await fetch(
+    "https://boards-api.greenhouse.io/v1/boards/bgb368test/jobs?content=true"
+  );
 
-  async function getJobBoards() {
-    const response = await fetch(
-      "https://boards-api.greenhouse.io/v1/boards/bgb368test/jobs?content=true"
-    );
+  if (!response.ok) {
+    const message = `An error has occured: ${response.status}`;
 
-    if (!response.ok) {
-      const message = `An error has occured: ${response.status}`;
-
-      throw new Error(message);
-    }
-
-    const dataJSON = await response.json();
-
-    return dataJSON;
+    throw new Error(message);
   }
 
-  getJobBoards()
-    .then((data) => {
-      console.log("jsonData", data);
+  const dataJSON = await response.json();
 
-      var arrJobs = [];
-      var arrJobOppty = [];
-      Object.keys(data.jobs).forEach(function (key) {
-        let item = data.jobs[key];
-        console.log("item", item);
-        console.log("item.departaments[0].name", item.departaments[0].name);
-        let jobName = item.departaments[0].name;
-        let jobId = item.departaments[0].id;
-        let jobOppty = {};
-        jobOppty.id = item.id;
-        jobOppty.name = item.title;
-        jobOppty.job = jobName;
-        jobOppty.internal_job_id = item.internal_job_id;
-        jobOppty.jobId = jobId;
+  return dataJSON;
+}
 
-        arrJobs.push(jobName);
-        arrJobOppty.push(jobName);
+getJobBoards()
+  .then((data) => {
+    console.log("jsonData", data);
+
+    //Map JSON TO arrays
+    var arrJobs = [];
+    var arrJobOppty = [];
+    Object.keys(data.jobs).forEach(function (key) {
+      let item = data.jobs[key];
+      //console.log("item", item);
+      //console.log("item.departments[0].name", item.departments);
+      let jobName = item.departments[0].name;
+      let jobId = item.departments[0].id;
+      let jobOppty = {};
+      jobOppty.id = item.id;
+      jobOppty.name = item.title;
+      jobOppty.job = jobName;
+      jobOppty.internal_job_id = item.internal_job_id;
+      jobOppty.jobId = jobId;
+
+      arrJobs.push(jobName);
+      if (!Array.isArray(arrJobOppty[jobName])) arrJobOppty[jobName] = [];
+
+      arrJobOppty[jobName].push(jobOppty);
+    });
+
+    //console.log("arrJobs", arrJobs);
+    //console.log("arrJobOppty", arrJobOppty);
+
+    //Make filter
+    var htmlFilter = "";
+    Object.keys(arrJobs).forEach(function (index) {
+      let jobName = arrJobs[index];
+      htmlFilter += `<div class="filter-item">
+                          <label class="w-checkbox btn-light">
+                            <input type="radio" id="radio-${jobName}" name="radio" class="radio-button">
+                            <span class="btn-filter" for="radio">${jobName}</span>
+                          </label>
+                      </div>`;
+    });
+
+    //Add Filter to document
+    $(".filter-item").remove();
+    $(".collection-list").append(htmlFilter);
+    /* $(".items-filter").append(
+      `<div class="filter-item"><span class="reset" >Reset all</span></div>`
+    );*/
+
+    //Make items
+    var html = "";
+    Object.keys(arrJobOppty).forEach(function (job) {
+      //Key Account
+      html += `<div class="jobboards" f3-job="${job}">
+                    <div class="head-container">
+                      <h2 class="heading-xlarge-2 text-black">${job}</h2>
+                      <p class="p-large text-black count">(${arrJobOppty[job].length})</p>
+                    </div>
+                    <div class="spacer-y-6"></div>
+                    <div class="opportunities-container">`;
+
+      Object.keys(arrJobOppty[job]).forEach(function (index) {
+        let jobOppty = arrJobOppty[job][index];
+        // console.log("jobOpptyId", jobOppty.id);
+
+        html += `<div class="opportunities-item">
+                    <div class="item">
+                      <div class="separator"></div>
+                      <div class="spacer-y-4"></div>
+                      <div class="spacer-y-4"></div>
+                      <a class="link-job" href="/job-opportunities?gh_jid=${jobOppty.id}"><h1 class="heading-md-2 text-black">${jobOppty.name}</h1></a>
+                    </div>
+                  </div>`;
       });
 
-      let html = `<div class="jobboars">
-      <div class="head-container">
-        <p class="p-large text-black count"></p></div>
-        <div class="spacer-y-6"></div>
-        <div class="opportunities-container">
-          <div class="opportunities-item">
-            <div class="item">
-            <div class="separator"></div>
-            <div class="spacer-y-4"></div>
-            <div class="spacer-y-4"></div>
-            <h1 class="heading-md-2 text-black">Heading</h1>
-          </div>
-        </div>
-      </div>
-      <div class="spacer-y-6"></div>
-    </div>`;
-    })
-    .catch((error) => {
-      console.error(error.message);
+      html += ` </div>
+                <div class="spacer-y-6"></div>
+              </div>`;
     });
-});
+
+    //Add items to document
+    $(".jobboards").remove();
+    $(".categories-container").append(html);
+
+    //Events
+    $(".btn-light").on("click", function () {
+      //filter selected
+      $(".btn-light, .btn-filter").removeClass("cc-dark");
+      $(this).addClass("cc-dark");
+      $(this).children(".btn-filter").addClass("cc-dark");
+
+      //filter data
+      $(`[f3-job]`).addClass("hidden");
+      console.log($(this).children("span").html());
+      $(`[f3-job="${$(this).children("span").html()}"]`).removeClass("hidden");
+    });
+
+    $(".reset").on("click", function () {
+      $(".btn-light, .btn-filter").removeClass("cc-dark");
+      $(`[f3-job]`).removeClass("hidden");
+    });
+  }) //then
+  .catch((error) => {
+    console.log(error.message);
+  });

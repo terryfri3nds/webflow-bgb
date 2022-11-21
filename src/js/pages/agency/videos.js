@@ -15,15 +15,15 @@ $(document).ready(function () {
     player.on("pause", function (e) {
       console.log(e);
       e.target.player.posterImage.el_.style.display = "block";
-      e.target.parentNode.classList.add("video-cursor-play");
-      e.target.parentNode.classList.remove("video-cursor-pause");
+      // e.target.parentNode.classList.add("video-cursor-play");
+      // e.target.parentNode.classList.remove("video-cursor-pause");
     });
 
     player.on("play", function (e) {
       console.log(e);
-      e.target.parentNode.classList.add("video-cursor-pause");
+      // e.target.parentNode.classList.add("video-cursor-pause");
       e.target.player.posterImage.el_.style.display = "none";
-      e.target.parentNode.classList.remove("video-cursor-play");
+      // e.target.parentNode.classList.remove("video-cursor-play");
     });
   }
 

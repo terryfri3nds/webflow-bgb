@@ -1,7 +1,46 @@
 /*Base Structure*/
+@import url("https://fonts.googleapis.com/css?family=Ppneuemontreal book&display=swap");
+
+html,
+body {
+  font-family: "Ppneuemontreal book", sans-serif !important;
+  font-size: 0.8333333333333334vw !important;
+  font-style: normal !important;
+}
+
+/* Max Font Size */
+@media screen and (min-width: 1600px) {
+  html,
+  body {
+    font-size: 13.333333333333334px;
+  }
+}
+
+/* Min Font Size */
+@media screen and (max-width: 991px) {
+  html,
+  body {
+    font-size: 8.258333333333335px;
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  p {
+    font-size: 17.5px;
+  }
+  .p-small {
+    font-size: 13.125000000000002px;
+  }
+}
+
+.hide,
+.hidden {
+  display: none;
+}
+
 #app_body,
 #wrapper {
-  max-width: none;
+  max-width: 120em !important;
   padding: 0px 0px;
 }
 
@@ -39,4 +78,381 @@
 #main_fields div.field label,
 #eeoc_fields div.field label {
   text-align: left;
+}
+
+#app_body #content {
+  font-size: 2em;
+  font-family: "Arial";
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #111117;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 5.1875em;
+  padding-left: 5.1875em;
+}
+
+em {
+  font-style: normal !important;
+}
+
+strong {
+  font-weight: 400 !important;
+}
+
+#app_body #content p:has(strong) {
+  margin-top: 4em;
+  margin-bottom: 4em;
+}
+
+#app_body #content p strong span {
+  /*font-family: "Neue Montreal";*/
+  font-style: normal;
+  font-weight: 400;
+  font-size: 5em;
+  line-height: 1.4;
+  color: #111117;
+}
+
+#app_body #content p:last-child {
+  /*font-family: "Neue Montreal";*/
+  display:none;
+}
+
+/* List */
+
+ul {
+  color: #4f4f4f;
+  font-size: 0.875em;
+  line-height: 1.4;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  padding-left: 0;
+  list-style: none;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+li {
+  padding-bottom: 1.8125em;
+  padding-left: 4.5375em;
+  background-image: url(https://7ywgod-8080.preview.csb.app/line.svg);
+  background-size: auto;
+  background-repeat: no-repeat;
+  font-size: 1rem;
+}
+
+
+#main_fields div.field input[type=text] {
+    height: 1.5em;
+   /* margin-bottom: 1.5em;*/
+    padding-right: 0px;
+    padding-left: 0px;
+   /* border-style: solid none none;*/
+    border-width: 0px 0px 1px;
+   
+    border-color: #fff #000;
+    background-color: transparent;
+    color: #fff;
+    font-size: 2em;
+    width: 100%;
+}
+
+
+
+
+
+#main_fields .heading
+{
+  font-family: 'Arial';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 8em;
+  line-height: 130%;
+  padding-bottom: 5.5rem;
+}
+
+#main_fields div.field label {
+  font-family: 'Arial';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 3em;
+  line-height: 140%;
+  color: #FFFFFF;
+  width: 99%;
+  display: flex;
+}
+
+label .asterisk
+{
+  color: #FFFFFF !important;
+}
+
+
+
+#custom_fields div.field label {
+  font-family: 'Arial';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 3em;
+  line-height: 140%;
+  color: #FFFFFF;
+  width: 99%;
+  display: flex;
+}
+
+#custom_fields div.field input[type=text] {
+  height: 1em;
+ /* margin-bottom: 1.5em;*/
+  padding-right: 0px;
+  padding-left: 2em;
+ /* border-style: solid none none;*/
+  border-width: 0px 0px 0px;
+ 
+  /*border-color: #fff #000;*/
+  background-color: transparent;
+  color: #fff;
+  font-size: 1em !important;
+}
+
+.attach-or-paste .link-container button,
+.attach-or-paste .link-container a  {
+  font-size: 1.5em;
+  line-height: 29px;
+  text-transform: uppercase;
+  color: #FFFFFF !important;
+  background-color: black;
+  border-width: 0px;
+}
+
+.attach-or-paste .link-container,
+.attach-or-paste .file-types {
+  text-align: center;
+}
+
+#main_fields div.field textarea.paste {
+  width: 99%;
+  margin-left: 0px !important;
+}
+
+#main_fields div.field {
+  padding-top:2.5em;
+  margin-bottom: 0px !important;
+}
+
+#resume_fieldset>legend{
+  margin-bottom: 0px !important;
+}
+#main_fields .field:has(#resume_fieldset),
+#main_fields .field:has(#cover_letter_fieldset){
+
+  border-bottom: 1px solid #fff;
+  padding-bottom: 2.5em;
+}
+
+#education_section .field{
+
+  border-bottom: 1px solid #fff;
+  padding-bottom: 2.5em;
+}
+
+div.select2-container[style]{
+  width: 100% !important;
+  background-color: black;
+  margin-top: 2em;
+}
+
+
+.select2-search, .select2-results, .select2-hidden-accessible,
+.select2-container .select2-choice>.select2-chosen,
+.select2-container .select2-choice>.select2-chosen,
+.select2-container .select2-choice,
+.select2-search-choice-close,
+.select2-drop{
+  background-color: black;
+}
+.select2-search-choice-close{
+  color:#FFFFFF;
+}
+.select2-container .select2-choice>.select2-chosen{
+  margin-right: 0px;
+  padding: 6px 8px 8px 8px;
+  font-size: 1.5em;
+  margin-right: 0px !important;
+  color:#c7bebe;
+}
+.select2-container .select2-choice {
+  border: 1px solid #FFFFFF;
+  padding: 0 0 0 0px;
+  height: 3em;
+  border-radius: 0px;
+}
+.select2-container .select2-choice .select2-arrow {
+  border: 1px solid #FFFFFF;
+  background: black;
+  color:#FFFFFF;
+  padding-top: 4px;
+  border-radius: 0px;
+}
+.select2-results li{
+  padding-left:2px;
+}
+.select2-drop-active {
+  border: 1px solid #FFFFFF;
+  border-top: none;
+}
+.select2-results{
+  color:#FFFFFF;
+}
+.select2-results::-webkit-scrollbar {
+  width: 1em;
+}
+ 
+.select2-results::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(201, 53, 53, 0.3);
+}
+ 
+.select2-results::-webkit-scrollbar-thumb {
+  background-color: #FFFFFF;
+  outline: 1px solid #FFFFFF;
+}
+
+.select2-container.select2-allowclear .select2-choice abbr{
+  top:12px;
+}
+.select2-searching{
+  background-color: #191818!important;
+}
+
+#add_education{
+    color: #FFFFFF;
+    border: 1px solid #FFFFFF;
+    width: 12%;
+    padding: 1em;
+    border-radius: 999px;
+    margin-left: 0px;
+}
+
+#custom_fields .field{
+
+  border-bottom: 1px solid #fff;
+  padding-bottom: 2.5em;
+  padding-top: 2.5em;
+  margin-bottom: 0px !important;
+}
+
+
+#custom_fields select {
+
+  background-color: black;
+  margin-left:15px;
+  font-size: 0.5em;
+  color:#c7bebe;
+  padding: 1rem;
+}
+
+#eeoc_fields select {
+
+  background-color: white;
+  color: black;
+
+  font-size: 0.5em;
+  padding: 1rem;
+  margin-top:1em;
+  margin-bottom:1em;
+}
+
+
+#custom_fields .field:has(#job_application_answers_attributes_5_boolean_value)
+{
+  margin-top:14em;
+}
+
+#eeoc_title
+{
+  font-style: normal;
+  font-weight: 400;
+  font-size: 5em;
+  line-height: 1.4;
+  color: #111117;
+}
+
+#eeoc_fields{
+  font-size: 2em;
+  font-family: "Arial";
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #111117;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 5.1875em;
+  padding-left: 5.1875em;
+}
+
+
+#eeoc_fields div.field label
+{
+
+    font-family: 'Arial';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 2em;
+    line-height: 140%;
+    color: black;
+    width: 99%;
+    display: flex;
+
+}
+
+#eeoc_fields a
+{
+  color:#EB5757;
+  font-size: 2.5em;
+  line-height: 140%;
+  text-decoration-line: underline;
+  
+}
+#eeoc_fields a:first-child
+{
+  font-size:1em;
+  text-decoration-line: underline;
+}
+#eeoc_fields .field{
+
+  border-bottom: 1px solid black;
+  padding-bottom: 0.7em;
+}
+#veteran_status_dropdown_container{
+  padding-bottom: 1.7em!important;
+}
+#eeoc_fields a + p
+{
+  margin-top:2em!important;
+}
+#hispanic_ethnicity_dropdown_container
+{
+  margin-bottom:3em!important;
+}
+
+.eeoc_form_data{ display:none;}
+
+#disability_status_dropdown_container + p { display:none;}
+
+#disability_status_header{
+  font-style: normal;
+  font-weight: 400;
+  font-size: 5em;
+  line-height: 1.4;
+  color: #111117;
+  text-decoration-line: none;
+  text-align: left;
+}
+
+#disability_status_header ~ strong
+{
+  font-weight: 400;
+  font-size: 3em;
+  line-height: 140%;
+  color: #111117;
 }

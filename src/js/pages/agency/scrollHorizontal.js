@@ -7,8 +7,8 @@ $(document).ready(function () {
 
   function calculateScroll() {
     // Desktop
-    let itemsInView = 3;
-    let scrollSpeed = 0.5;
+    let itemsInView = 4;
+    let scrollSpeed = 1.5;
 
     if (window.matchMedia("(max-width: 479px)").matches) {
       // Mobile Portrait
@@ -17,7 +17,7 @@ $(document).ready(function () {
     } else if (window.matchMedia("(max-width: 767px)").matches) {
       // Mobile Landscape
       itemsInView = 1;
-      scrollSpeed = 10.5;
+      scrollSpeed = 0.5;
     } else if (window.matchMedia("(max-width: 991px)").matches) {
       // Tablet
       itemsInView = 2;
