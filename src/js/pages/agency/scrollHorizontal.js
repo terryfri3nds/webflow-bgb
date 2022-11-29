@@ -8,9 +8,14 @@ $(document).ready(function () {
   function calculateScroll() {
     // Desktop
     let itemsInView = 4;
-    let scrollSpeed = 1.5;
+    let scrollSpeed = 0.5;
 
-    if (window.matchMedia("(max-width: 479px)").matches) {
+    if (window.matchMedia("(max-width: 1600px)").matches) {
+      // Desktop
+      console.log("pasee");
+      itemsInView = 3;
+      scrollSpeed = 0.1;
+    } else if (window.matchMedia("(max-width: 479px)").matches) {
       // Mobile Portrait
       itemsInView = 1;
       scrollSpeed = 0.5;

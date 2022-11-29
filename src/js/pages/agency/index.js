@@ -28,7 +28,7 @@ $(document).ready(function () {
   $(".grid-card").on("mouseenter", function () {
     changeFocus($(this));
   });
-
+  /* 
   $(".scroll-trigger").on("inview", function (event, isInView) {
     if (isInView) {
       let myTrigger = $(this).closest(".grid-card");
@@ -37,7 +37,7 @@ $(document).ready(function () {
       // do something else
     }
   });
-
+*/
   // = custom scrollbar ============
   const scrollBar = document.querySelector(".barcontainer");
   const handler = document.querySelector(".bar");

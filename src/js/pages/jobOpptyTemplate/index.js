@@ -1,55 +1,49 @@
 $(document).ready(function () {
   function displayRandomImage() {
-    var num = Math.floor(Math.random() * 3) + 1;
-    $(".splide__slide:nth-of-type(" + num + ")").addClass("show");
+    var num = Math.floor(Math.random() * $(".job-img-wrapper").length) + 1;
+    console.log(num);
+    $(".job-img-wrapper:nth-of-type(" + num + ")").addClass("show");
+    $("#heroImageID").removeClass("hidden");
   }
 
   displayRandomImage();
 
-  /*
-function slider1() {
-    let splides = $(".slider1");
-    for (let i = 0, splideLength = splides.length; i < splideLength; i++) {
-      new Splide(splides[i], {
-        // Desktop on down
-        perPage: 1,
-      //  perMove: 1,
-        focus: 0, // 0 = left and 'center' = center
-        type: "loop", // 'loop' or 'slide'
-        gap: "2.78em", // space between slides
-        autoplay: true,
-        interval: 3000,
-        arrows: false, // 'slider' or false
-        pagination: false, // 'slider' or false
-        speed: 600, // transition speed in miliseconds
-      //  dragAngleThreshold: 30, // default is 30
-        autoWidth: false, // for cards with differing widths
-        rewind: true, // go back to beginning when reach end
-        rewindSpeed: 400,
-        waitForTransition: false,
-        updateOnMove: true,
-        trimSpace: false, // true removes empty space from end of list
-        breakpoints: {
-          991: {
-            // Tablet
-            perPage: 2,
-            gap: "1.39em"
-          },
-          767: {
-            // Mobile Landscape
-            perPage: 2,
-            gap: "1.39em"
-          },
-          479: {
-            // Mobile Portrait
-            perPage: 1,
-            gap: "1.39em"
-          }
-        }
-      }).mount();
-    }
-  }
+  /* API GreenHouse */
 
-  slider1();
-  */
+  async function getJobBoards() {
+    const response = await fetch(
+      "https://boards-api.greenhouse.io/v1/boards/bgb368test/jobs?content=true"
+    );
+
+    if (!response.ok) {
+      const message = `An error has occured: ${response.status}`;
+
+      throw new Error(message);
+    }
+
+    const dataJSON = await response.json();
+
+    return dataJSON;
+  }
+  getJobBoards().then((data) => {
+    console.log("jsonData", data);
+
+    var jobOppty = {};
+
+    Object.keys(data.jobs).forEach(function (key) {
+      let item = data.jobs[key];
+
+      let jobName = item.departments[0].name;
+      let jobId = item.departments[0].id;
+
+      jobOppty.id = item.id;
+      jobOppty.name = item.title;
+      jobOppty.job = jobName;
+      jobOppty.internal_job_id = item.internal_job_id;
+      jobOppty.jobId = jobId;
+    });
+
+    $("#jobPostNameID").html(jobOppty.name);
+    $("#jobPostNameID").removeClass("is-inactive");
+  });
 });
