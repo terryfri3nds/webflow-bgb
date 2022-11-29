@@ -1,0 +1,26 @@
+/* Video JS */
+.vjs-control-bar {
+  opacity: 0 !important;
+}
+
+.video-cursor-play {
+  cursor: url("https://uploads-ssl.webflow.com/6083048416ea717b1808c062/620e4b1146aeb1350fb35057_Play-white.png"),
+    auto !important;
+  cursor: grabbing;
+  cursor: -webkit-grabbing;
+}
+
+.video-cursor-pause {
+  cursor: url("https://uploads-ssl.webflow.com/6083048416ea717b1808c062/620fd62cfb6fd869c33f1fd2_Pause-white-120.svg"),
+    auto !important;
+  cursor: grabbing;
+  cursor: -webkit-grabbing;
+}
+.video-js .vjs-big-play-button .vjs-icon-placeholder:before {
+}
+
+.video-js {
+  width: 100% !important;
+  height: 100% !important;
+}
+/* END Video JS */

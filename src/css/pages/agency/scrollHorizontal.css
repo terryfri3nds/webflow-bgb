@@ -1,0 +1,4 @@
+/* Scroll Hotizontal*/
+.team-trigger {
+  height: calc(100% - 100vh);
+}

@@ -1,0 +1,964 @@
+/*Base Structure*/
+@font-face {
+  font-family: "Neue Montreal";
+  src: url(https://7ywgod-8080.preview.csb.app/fonts/PPNeueMontreal-Regular.woff2);
+}
+
+html,
+body {
+  font-family: "Neue Montreal", sans-serif !important;
+  font-size: 0.8333333333333334vw !important;
+  font-style: normal !important;
+  background-color: #fafafa;
+}
+
+/* Max Font Size */
+@media screen and (min-width: 1600px) {
+  html,
+  body {
+    font-size: 13.333333333333334px;
+  }
+}
+
+/* Min Font Size */
+@media screen and (max-width: 991px) {
+  html,
+  body {
+    font-size: 11px;
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  p {
+    font-size: 13.5px;
+  }
+  .p-small {
+    font-size: 13.125000000000002px;
+  }
+}
+
+.hide,
+.hidden,
+#header {
+  display: none;
+}
+
+#app_body,
+#wrapper {
+  max-width: 100% !important;
+  padding: 0px 0px;
+}
+
+#app_body[style] {
+  padding-left: 0px !important;
+}
+
+/* Into Sections*/
+#application {
+  padding: 0px;
+  /*background-color: #FAFAFA;*/
+  max-width: none;
+}
+#main_fields,
+#custom_fields {
+  background: black;
+  color: #fafafa;
+}
+
+#content,
+#main_fields,
+#custom_fields,
+#eeoc_fields {
+  padding: 10rem 10rem;
+  max-width: 100vw;
+}
+
+#main hr {
+  display: none;
+}
+
+#submit_buttons {
+  text-align: center;
+}
+#main_fields div.field label,
+#eeoc_fields div.field label {
+  text-align: left;
+}
+
+#app_body #content {
+  font-size: 2rem;
+  font-family: "Arial";
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #111117;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 5.1875rem;
+  padding-left: 5.1875rem;
+}
+
+em {
+  font-style: normal !important;
+}
+
+strong {
+  font-weight: 400 !important;
+}
+
+#app_body #content p:has(strong) {
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+}
+
+#app_body #content p span strong {
+  /*font-family: "Neue Montreal";*/
+  font-style: normal;
+  font-weight: 400 !important;
+  font-size: 2rem !important;
+  line-height: 1.4;
+  color: #111117;
+}
+
+#app_body #content p strong:first-child {
+  /*font-family: "Neue Montreal";*/
+  font-style: normal;
+  font-weight: 400;
+  font-size: 5rem;
+  line-height: 1.4;
+  color: #111117;
+}
+
+#app_body #content p:last-child {
+  /*font-family: "Neue Montreal";*/
+  display: none;
+}
+
+/* List */
+
+ul {
+  color: #4f4f4f;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  padding-left: 0;
+  list-style: none;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+}
+li {
+  padding-bottom: 3.8125rem;
+  padding-left: 7.5375rem;
+  background-image: url(https://7ywgod-8080.preview.csb.app/line.svg);
+  background-size: auto;
+  background-repeat: no-repeat;
+  font-size: 1rem;
+  background-position-y: 6px;
+  background-size: 3.26rem;
+}
+
+#main_fields div.field input[type="text"] {
+  /* height: 1.5rem;
+   margin-bottom: 1.5em; */
+  padding-right: 0px;
+  padding-left: 0px;
+  /* border-style: solid none none; */
+  border-width: 0px;
+  /* padding-top: 1rem;*/
+  /* border-color: #fff #000; */
+  background-color: transparent;
+  color: #fff;
+  font-size: 2rem;
+  width: 100%;
+}
+
+#main_fields .heading {
+  font-family: "Arial";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 8rem;
+  line-height: 130%;
+  padding-bottom: 5.5rem;
+}
+
+#main_fields div.field label {
+  font-family: "Arial";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 2rem;
+  line-height: 140%;
+  color: #fafafa;
+  min-width: 20%;
+  opacity: 0.8;
+}
+
+.education div.field label {
+  width: 100% !important;
+}
+
+label .asterisk {
+  color: #fafafa !important;
+  font-size: 2rem !important;
+  /*min-width: 30%;*/
+}
+
+#resume_fieldset legend label,
+#cover_letter_fieldset legend label {
+  width: 100% !important;
+}
+#resume_fieldset legend,
+#cover_letter_fieldset legend {
+  width: 20%;
+}
+#resume_fieldset,
+#cover_letter_fieldset {
+  display: flex;
+  width: 100%;
+}
+
+.attach-or-paste {
+  width: 100%;
+}
+
+#custom_fields div.field label input[type="text"] {
+  color: #fafafa;
+}
+#custom_fields div.field label {
+  /*font-family: "Arial";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 2rem;
+  line-height: 140%;
+  color: #fafafa;
+  min-width: 20%;
+  display: flex;
+  position: relative;
+  */
+  font-family: "Arial";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 2rem;
+  line-height: 140%;
+  color: #fafafa;
+  min-width: 20%;
+  display: grid;
+  grid-auto-columns: auto;
+  grid-column-gap: 0.5rem;
+  grid-row-gap: 16px;
+  grid-template-columns: max-content auto;
+  grid-template-rows: auto auto;
+  opacity: 0.7;
+}
+#custom_fields div.field label:has(.asterisk) {
+  font-family: "Arial";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 2rem;
+  line-height: 140%;
+  color: #fafafa;
+  min-width: 20%;
+  display: grid;
+  grid-auto-columns: auto;
+  grid-column-gap: 0.5rem;
+  grid-row-gap: 16px;
+  grid-template-columns: max-content max-content auto;
+  grid-template-rows: auto auto;
+  opacity: 0.7;
+}
+
+label br {
+  display: none;
+}
+
+#custom_fields div.field input[type="text"] {
+  margin-top: 0px !important;
+  /*height: 1rem;*/
+  /* margin-bottom: 1.5em;*/
+  padding-right: 0px;
+  padding-left: 2rem;
+  /* border-style: solid none none;*/
+  border-width: 0px 0px 0px;
+
+  /*border-color: #fff #000;*/
+  background-color: transparent;
+  color: #fff;
+  font-size: 2rem !important;
+  width: 95%;
+  /* position: absolute;
+  right: 0%;
+  left: auto;
+  bottom: auto;
+  top: auto;*/
+}
+.accessible .select2-container {
+  max-width: 400px;
+}
+
+.accessible #custom_fields .select2-container {
+  margin-top: 0px !important;
+  max-width: 400px;
+}
+#custom_fields .field label .select2-container {
+  min-width: 20%;
+  /*position: absolute;*/
+  right: 0%;
+  /*  width: 100% !important;*/
+}
+
+#custom_fields .field label .field-error-msg {
+  /*font-size: 1rem;
+  position: absolute;
+  top: 100%;
+  right: auto;
+  left: 18%;
+  bottom: auto;
+  */
+  font-size: 1rem;
+  position: relative;
+  /* top: 14%; */
+  right: auto;
+  left: 121%;
+  bottom: auto;
+}
+
+#job_application_answers_attributes_5_boolean_value_error,
+#job_application_answers_attributes_6_boolean_value_error {
+  /*font-size: 1rem !important;
+  position: absolute !important;
+  top: 125% !important;
+  right: 12% !important;
+  left: auto !important;
+  bottom: auto !important;
+  */
+  font-size: 1rem !important;
+  position: relative !important;
+  /* top: 0% !important; */
+  right: auto !important;
+  left: 105% !important;
+}
+
+#main_fields .field-error-msg {
+  padding-left: 0px !important;
+  position: absolute;
+  right: auto;
+  left: 21%;
+  top: auto;
+  bottom: 6%;
+}
+
+.education .field-error-msg {
+  padding-left: 0px !important;
+  position: absolute;
+  right: 26% !important;
+  left: auto !important;
+  top: auto !important;
+  bottom: 6% !important;
+}
+
+.education #undefined_error {
+  position: static;
+}
+
+.attach-or-paste .link-container button,
+.attach-or-paste .link-container a {
+  font-size: 1.5rem;
+  line-height: 29px;
+  text-transform: uppercase;
+  color: #fafafa !important;
+  background-color: black;
+  border-width: 0px;
+}
+
+.attach-or-paste .link-container,
+.attach-or-paste .file-types {
+  text-align: center;
+}
+
+#main_fields div.field textarea.paste {
+  width: 99%;
+  margin-left: 0px !important;
+}
+
+#main_fields div.field {
+  padding-top: 2.5rem;
+  margin-bottom: 0px !important;
+}
+
+#resume_fieldset > legend {
+  margin-bottom: 0px !important;
+}
+#main_fields .field:has(#resume_fieldset),
+#main_fields .field:has(#cover_letter_fieldset) {
+  border-bottom: 1px solid #fff;
+  padding-bottom: 2.5rem;
+}
+
+#education_section .field {
+  border-bottom: 1px solid #fff;
+  padding-bottom: 2.5rem;
+}
+
+div.select2-container[style] {
+  /* width: 100% !important;
+  background-color: black;
+  margin-top: 1rem;
+  */
+}
+
+.select2-results li {
+  padding-bottom: 0.1rem;
+}
+.select2-results .select2-no-results {
+  color: #6e6e6ef0 !important;
+}
+.select2-results,
+.select2-drop,
+.select2-search {
+  background-color: #676464 !important;
+  color: black;
+}
+.select2-hidden-accessible,
+.select2-container .select2-choice > .select2-chosen,
+.select2-container .select2-choice > .select2-chosen,
+.select2-container .select2-choice,
+.select2-search-choice-close {
+  background-color: black !important;
+}
+.select2-search input {
+  /*background: black !important;*/
+  border-radius: 18px;
+}
+.select2-search-choice-close {
+  color: #fafafa;
+}
+.select2-container .select2-choice > .select2-chosen {
+  margin-right: 0px;
+  padding: 0px 0px 0px 8px;
+  font-size: 1.5rem;
+  margin-right: 0px !important;
+  color: #fafafa;
+  line-height: 36px;
+}
+.select2-results .select2-highlighted {
+  background: #939393;
+  border-radius: 8px;
+}
+.select2-container .select2-choice {
+  border-color: #cccccc !important;
+  height: auto;
+  border-radius: 999px;
+  box-shadow: inset 0 0 0 10px black;
+  padding: 0.2rem 0.2rem 0.2rem 0.5rem;
+  max-width: 400px;
+}
+
+.select2-container .select2-choice .select2-arrow {
+  border: 0px solid #fafafa;
+  background: black;
+  color: #fafafa;
+  border-radius: 999px;
+  padding-right: 15px;
+  padding-top: 9px;
+}
+.select2-results li {
+  padding-left: 2px;
+}
+.select2-drop-active {
+  border: 1px solid #676464;
+  /*border-top: none;*/
+  border-radius: 17px;
+  padding: 4px;
+}
+.select2-results {
+  color: #fafafa;
+}
+.select2-results::-webkit-scrollbar {
+  width: 1rem;
+}
+
+.select2-results::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(201, 53, 53, 0.3);
+}
+
+.select2-results::-webkit-scrollbar-thumb {
+  background-color: #fafafa;
+  outline: 1px solid #fafafa;
+  border-radius: 999px;
+}
+
+.select2-container.select2-allowclear .select2-choice abbr {
+  top: 12px;
+}
+.select2-searching {
+  background-color: #939393 !important;
+  border-radius: 8px;
+}
+
+/* SELECT2 #FAFAFA */
+#eeoc_fields .select2-choice,
+#eeoc_fields .select2-offscreen,
+#eeoc_fields .select2-container,
+#eeoc_fields .select2-container .select2-choice > .select2-chosen {
+  background-color: #fafafa !important;
+}
+#eeoc_fields .select2-container .select2-choice > .select2-chosen {
+  color: #000000;
+}
+
+#eeoc_fields .select2-container .select2-choice .select2-arrow {
+  border: 0px solid #fafafa;
+  background: #fafafa;
+  color: #000000;
+  border-radius: 999px;
+  padding-right: 8px;
+  padding-top: 5px;
+}
+
+#eeoc_fields .select2-container .select2-choice {
+  border-color: #cccccc !important;
+
+  text-decoration: none;
+  height: auto;
+  border-radius: 999px;
+  box-shadow: inset 0 0 0 10px #fafafa;
+  padding: 0.2rem 0.2rem 0.2rem 0.5rem;
+}
+
+#eeoc_fields .select2-results {
+  color: #000000 !important;
+  background: #fafafa !important;
+}
+#eeoc_fields .select2-drop {
+  color: #000000 !important;
+  background: #fafafa !important;
+}
+
+/* END SELECT2 #FAFAFA*/
+
+#education_section {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 9rem;
+}
+
+.remove-background-field::before {
+  content: "Remove";
+}
+.remove-background-field {
+  position: absolute;
+  /* top: -27px; */
+  margin-left: auto;
+  /* width: 100%; */
+  color: #fafafa;
+  top: 0%;
+  left: auto;
+  right: 0%;
+  bottom: auto;
+  opacity: 0.7;
+}
+.remove-background-field img {
+  display: none;
+}
+
+#add_education {
+  color: #fafafa;
+  border: 1px solid #fafafa;
+  width: 21%;
+  padding: 1rem;
+  border-radius: 999px;
+  margin-left: 0px;
+  font-size: 1.5rem;
+  margin-top: 4rem;
+}
+
+#custom_fields .field {
+  border-bottom: 1px solid #fff;
+  padding-bottom: 2.5rem;
+  padding-top: 2.5rem;
+  margin-bottom: 0px !important;
+}
+
+#custom_fields select {
+  background-color: black;
+  margin-left: 15px;
+  font-size: 2rem;
+  color: #c7bebe;
+  padding: 0rem 0rem 0rem 1rem;
+  border-radius: 999px;
+  min-width: 10%;
+  height: 3rem;
+  width: 98% !important;
+  /* position: absolute;
+  right: 0%;
+  left: auto;
+  bottom: auto;
+  top: auto;*/
+}
+
+#eeoc_fields select {
+  background-color: #fafafa;
+  color: black;
+  border-radius: 999px;
+  min-width: 10%;
+  font-size: 2rem;
+  padding: 0rem 0rem 0rem 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  height: 3rem;
+
+  min-width: 10%;
+  /*position: absolute;
+  right: 0%;
+  left: auto;
+  bottom: auto;
+  top: auto;*/
+}
+
+#custom_fields .field:has(#job_application_answers_attributes_5_boolean_value) {
+  margin-top: 14rem;
+}
+
+#eeoc_title {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 5rem;
+  line-height: 1.4;
+  color: #111117;
+}
+
+#eeoc_fields {
+  font-size: 1.5rem;
+  font-family: "Arial";
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #111117;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 10rem 10rem;
+}
+
+#eeoc_fields div.field label {
+  font-family: "Arial";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 2rem;
+  line-height: 140%;
+  color: black;
+  width: 99%;
+  display: flex;
+}
+
+#eeoc_fields a {
+  color: #eb5757;
+  font-size: 3rem;
+  line-height: 140%;
+  text-decoration-line: underline;
+}
+#eeoc_fields a:first-child {
+  font-size: 1.5rem;
+  text-decoration-line: underline;
+}
+#eeoc_fields .field {
+  border-bottom: 1px solid black;
+  padding-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+#veteran_status_dropdown_container {
+  padding-bottom: 1.7rem !important;
+}
+#eeoc_fields a + p {
+  margin-top: 2rem !important;
+}
+#hispanic_ethnicity_dropdown_container {
+  margin-bottom: 6rem !important;
+}
+
+.eeoc_form_data {
+  display: none;
+}
+
+#disability_status_dropdown_container + p {
+  display: none;
+}
+
+#disability_status_header {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 5rem;
+  line-height: 1.4;
+  color: #111117;
+  text-decoration-line: none;
+  text-align: left;
+}
+
+#disability_status_header ~ strong {
+  font-weight: 400;
+  font-size: 3rem;
+  line-height: 140%;
+  color: #111117;
+}
+
+#submit_app {
+  padding: 17.3725px 52.1176px !important;
+  border: 6.94901px solid #111117 !important;
+  gap: 34.75px !important;
+  background-color: transparent !important;
+  color: #111117 !important;
+  font-weight: 400 !important;
+  font-size: 5.2rem !important;
+  line-height: 130% !important;
+  text-transform: uppercase !important;
+  border-radius: 999px !important;
+}
+#submit_app:hover {
+  background-color: black !important;
+  color: #fafafa !important;
+}
+
+#submit_buttons {
+  padding-bottom: 10rem;
+}
+
+div.field {
+  overflow: hidden !important;
+  padding-bottom: 0.5rem;
+  padding-top: 3.5rem;
+}
+
+#education_section {
+  margin-top: 12rem;
+}
+
+#main_fields div.field {
+  border-bottom: 1px solid #fff;
+  padding-bottom: 2.5rem;
+  padding-top: 2.5rem;
+  margin-bottom: 0px !important;
+  display: flex;
+  position: relative;
+}
+.education .year,
+.employment .year {
+  width: 5ch !important;
+  padding-top: 13px !important;
+}
+.education .month {
+  width: 3ch !important;
+  padding-top: 13px !important;
+}
+
+#job_application_gender,
+#job_application_hispanic_ethnicity {
+  margin-top: 2rem !important;
+}
+
+#submission_received #view-more,
+#submission_received #back_to_application_link {
+  display: none;
+}
+
+#submission_received #application_confirmation h1 {
+  font-size: 5rem;
+}
+#application_confirmation p {
+  font-size: 1.5rem;
+}
+#submission_received {
+  padding: 0rem 10rem;
+}
+
+/* MOBILE*/
+@media screen and (max-width: 991px) {
+  .education .field-error-msg {
+    padding-left: 0px !important;
+    position: absolute;
+    right: 0% !important;
+    left: auto !important;
+    top: auto !important;
+    bottom: 6% !important;
+  }
+
+  #education_section {
+    margin-bottom: 20px;
+  }
+
+  #education_section .select2-container {
+    margin-top: 11px !important;
+    margin-bottom: 10px !important;
+  }
+
+  .select2-container .select2-choice {
+    padding: 0px 0px 0px 8px;
+  }
+
+  #resume_fieldset legend,
+  #cover_letter_fieldset legend {
+    width: 100% !important;
+  }
+
+  #resume_fieldset,
+  #cover_letter_fieldset {
+    display: block;
+  }
+
+  #main_fields .field-error-msg {
+    padding-left: 0px !important;
+    position: relative;
+    left: 0%;
+  }
+
+  #main_fields div.field {
+    display: block;
+  }
+
+  ul {
+    margin-top: 8rem;
+  }
+
+  li {
+    background-size: 17px;
+    font-size: 9px;
+  }
+
+  #custom_fields select {
+    background-color: black;
+    margin-left: 0px !important;
+    font-size: 11px;
+    color: #c7bebe;
+    padding: 0rem 0rem 0rem 1rem;
+    border-radius: 999px;
+    min-width: 10%;
+    height: 9rem;
+    margin-top: 2px;
+    height: 9rem;
+  }
+
+  #eeoc_fields select {
+    background-color: #fafafa;
+    color: black;
+    border-radius: 999px;
+    min-width: 10%;
+    font-size: 11px;
+    padding: 0rem 0rem 0rem 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-top: 2px;
+    position: static;
+    height: 9rem;
+  }
+  .attach-or-paste .link-container a {
+    font-size: 11px;
+    line-height: 29px;
+    text-transform: uppercase;
+    color: #fafafa !important;
+    background-color: black;
+    border-width: 0px;
+    background-image: none !important;
+    border: none !important;
+  }
+  .attach-or-paste .link-container {
+    font-size: 11px;
+    display: inline-block;
+    text-align: center;
+    justify-self: baseline;
+    margin: auto;
+    width: 100%;
+  }
+  .attach-or-paste .link-container button {
+    font-size: 11px;
+  }
+
+  .select2-container .select2-choice > .select2-chosen {
+    font-size: 11px;
+  }
+  #add_education {
+    color: #fafafa;
+    border: 1px solid #fafafa;
+    width: 94%;
+    padding: 3rem;
+    border-radius: 999px;
+    margin-left: 0px;
+    font-size: 11px;
+    text-align: center;
+  }
+
+  #cover_letter-allowable-file-types,
+  #resume-allowable-file-types,
+  .field-error-msg {
+    font-size: 11px;
+  }
+  #app_body #content p strong span {
+    font-size: 14px !important;
+  }
+
+  #eeoc_title {
+    font-size: 14rem !important;
+  }
+  #eeoc_fields div.field label {
+    font-size: 16px !important;
+  }
+  #eeoc_fields a {
+    font-size: 14px;
+  }
+
+  #main_fields div.field input[type="text"],
+  #custom_fields div.field input[type="text"] {
+    font-size: 14px !important;
+  }
+
+  #main_fields div.field label,
+  #custom_fields div.field label {
+    font-size: 14px !important;
+    margin-bottom: 2rem !important;
+    width: 100% !important;
+    display: block !important;
+  }
+
+  #custom_fields .field label .field-error-msg {
+    font-size: 11px !important;
+    position: relative !important;
+    /*top: 27px !important;*/
+    right: 0% !important;
+    left: auto !important;
+    bottom: auto !important;
+    /* padding-left: 6px !important; */
+    margin-bottom: 10px !important;
+  }
+
+  #custom_fields .field label .select2-container {
+    min-width: 20%;
+    position: static;
+    right: auto !important;
+  }
+
+  #disability_status_header ~ strong {
+    font-size: 8rem;
+  }
+  #disability_status_header {
+    font-size: 14rem;
+  }
+  label .asterisk {
+    font-size: 14px !important;
+  }
+
+  .select2-container .select2-choice .select2-arrow {
+    padding-right: 11px;
+    padding-top: 4px;
+  }
+  /*
+  #job_application_answers_attributes_5_boolean_value_error,
+  #job_application_answers_attributes_6_boolean_value_error {
+    width: 112% !important;
+    font-size: 11px !important;
+    position: relative !important;
+    top: 32px !important;
+    right: 31% !important;
+  }
+*/
+  /* END MOBILE;*/
+}

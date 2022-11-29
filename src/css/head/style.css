@@ -1,1 +1,29 @@
-/* empty */
+.js-clipping-text .words,
+.js-clipping-text-large .words {
+  clip-path: inset(0% 100% 0% 0%);
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  color: white;
+  left: 0;
+  top: 0;
+}
+
+.js-clipping-text-black .words,
+.js-clipping-text-black-large .words {
+  clip-path: inset(0% 100% 0% 0%);
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  color: black;
+  left: 0;
+  top: 0;
+}
+
+.words {
+  line-height: initial;
+}
+
+.linee {
+  position: relative;
+}
